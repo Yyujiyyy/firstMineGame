@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class SensitivityChenger : MonoBehaviour
+public class SensitivityChanger : MonoBehaviour
 {
-    public GameObject uiPanel;
-
-
+    public FPScamera fpsCameraScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +16,6 @@ public class SensitivityChenger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F3))
-        {
-            uiPanel.SetActive(!uiPanel.activeSelf);  // ï\é¶ÅEîÒï\é¶êÿÇËë÷Ç¶
-        }
+        
     }
 }

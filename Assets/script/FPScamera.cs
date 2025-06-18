@@ -10,7 +10,7 @@ public class FPScamera : MonoBehaviour
 
     public GameObject cam;          //解説
     Quaternion cameraRot, characterRot;     //解説
-    float XSensitivity = 3f, YSensitivity = 3f;
+    [Range(0.0001f, 40.000f)][SerializeField]float Sensitivity = 1f;
     bool cursorLock = true;         //解説
     float minX = -90, maxX = 90f;
 
@@ -24,8 +24,8 @@ public class FPScamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxis("Mouse X") * YSensitivity;
-        float yRot = Input.GetAxis("Mouse Y") * XSensitivity;
+        float xRot = Input.GetAxis("Mouse X") * Sensitivity;
+        float yRot = Input.GetAxis("Mouse Y") * Sensitivity;
         //マウスの移動量　       ×　   感度
 
 
