@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private EnemyController _random;
     public ParticleSystem particle;   // Hierarchyã‚ÌParticleSystem‚ğw’è
     [SerializeField] public Transform enemy;
-    
-
-    Transform _tr;
+     Transform _tr;
 
     //public EnemyController enemycontroller;
 

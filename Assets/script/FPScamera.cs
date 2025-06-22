@@ -28,7 +28,6 @@ public class FPScamera : MonoBehaviour
         float yRot = Input.GetAxis("Mouse Y") * Sensitivity;
         //マウスの移動量　       ×　   感度
 
-
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);     //解説
         characterRot *= Quaternion.Euler(0, xRot, 0);   //解説
 

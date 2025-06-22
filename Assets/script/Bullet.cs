@@ -29,8 +29,8 @@ public class Bullet : MonoBehaviour
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default")); // 標準シェーダー
-        lineRenderer.startColor = Color.red;
-        lineRenderer.endColor = Color.red;
+        lineRenderer.startColor = Color.yellow;
+        lineRenderer.endColor = Color.yellow;
         lineRenderer.positionCount = 2; // 2点で線
         lineRenderer.enabled = false;   //最初は非表示
     }
