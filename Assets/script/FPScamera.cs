@@ -19,6 +19,11 @@ public class FPScamera : MonoBehaviour
     {
         cameraRot = cam.transform.localRotation;
         characterRot = transform.localRotation;
+
+        if (PlayerPrefs.HasKey("Speed"))
+        {
+            speed = PlayerPrefs.GetFloat("Speed");      //speed•Ï”‚ğ‹¤’Ê‚Ì”’l‚É‚·‚é
+        }
     }
 
     // Update is called once per frame
