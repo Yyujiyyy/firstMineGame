@@ -29,6 +29,11 @@ public class FPScamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.HasKey("Speed"))
+        {
+            speed = PlayerPrefs.GetFloat("Speed"); // 毎フレーム取得
+        }
+
         float xRot = Input.GetAxis("Mouse X") * Sensitivity;
         float yRot = Input.GetAxis("Mouse Y") * Sensitivity;
         //マウスの移動量　       ×　   感度
