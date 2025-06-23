@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     /* private void OnCollisionEnter(Collision collision)
      //Rigidbody を持つオブジェクトが他の Collider にぶつかった瞬間に実行される
      {
-         if (collision.gameObject.tag == "enemy" && collision.gameObject != this.gameObject)//修正する！！
+         if (collision.gameObject.tag == "enemy" && collision.gameObject != this.gameObject)    //修正する！！
          {
              Destroy(collision.gameObject);
 

@@ -57,14 +57,16 @@ public class Player : MonoBehaviour
 
                 //Destroy(hitInfo.collider.gameObject);
                 //オブジェクト本体ごと削除"gameObject"がないとcolliderのみの削除となり、本体は残り続ける
+                
 
 
                                                     //particle発動！！！
 
                 if (hitInfo.collider.CompareTag("enemy"))
                 {
-                    particle.transform.position = hitInfo.collider.transform.position;       //particleの位置を当たった位置にする（ワープ先についてこない）
-                    particle.Play();
+                    //particle.transform.position = hitInfo.point;       //particleの位置を当たった位置にする（ワープ先についてこない）
+                    //instantiateするから必要ない↑
+                    Instantiate(particle,hitInfo.point, Quaternion.identity);
 
                     if (_random != null)                    //nullチェック      解説
                     {
