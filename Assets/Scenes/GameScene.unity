@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8200b02ee28f7584581712706b554d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0.06
   cam: {fileID: 330585543}
   Sensitivity: 0.5
 --- !u!54 &199513985

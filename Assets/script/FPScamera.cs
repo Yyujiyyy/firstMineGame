@@ -10,7 +10,7 @@ public class FPScamera : MonoBehaviour
 
     public GameObject cam;          //解説
     Quaternion cameraRot, characterRot;     //解説
-    [Range(0.0001f, 40.000f)][SerializeField]float Sensitivity = 1f;
+    [Range(0.0001f, 40.000f)][SerializeField]public float Sensitivity = 1f;
     bool cursorLock = true;         //解説
     float minX = -90, maxX = 90f;
 
@@ -20,18 +20,18 @@ public class FPScamera : MonoBehaviour
         cameraRot = cam.transform.localRotation;
         characterRot = transform.localRotation;
 
-        if (PlayerPrefs.HasKey("Speed"))
+        if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            Sensitivity = PlayerPrefs.GetFloat("Speed");      //speed変数を共通の数値にする
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity");      //Sensitivity変数を共通の数値にする
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.HasKey("Speed"))
+        if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            speed = PlayerPrefs.GetFloat("Speed"); // 毎フレーム取得
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity"); // 毎フレーム取得
         }
 
         float xRot = Input.GetAxis("Mouse X") * Sensitivity;

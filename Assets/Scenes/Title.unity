@@ -793,8 +793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc9280530a935d4d8a8af088dd684dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedText: {fileID: 1779644641}
-  speedSlider: {fileID: 283579049}
+  SensitivityText: {fileID: 1779644641}
+  sensitivitySlider: {fileID: 283579049}
+  cameraScript: {fileID: 0}
 --- !u!4 &397492062
 Transform:
   m_ObjectHideFlags: 0
