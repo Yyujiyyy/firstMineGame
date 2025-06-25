@@ -12,6 +12,8 @@ public class slider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedSlider.maxValue = 10.0f;         // スライダーの上限を変更(10.0に変更)
+
         // 保存された値を取得。なければデフォルト3.0f
         float savedSpeed = PlayerPrefs.GetFloat("Speed", 3.0f);
 
@@ -26,9 +28,16 @@ public class slider : MonoBehaviour
         
     }
 
+    public FPScamera cameraScript; // FPSカメラスクリプト参照
+
     public void OnSpeedChanged(float value)
     {
         PlayerPrefs.SetFloat("Speed", value); // スピード保存
         speedText.text = "Sensitivity : " + value.ToString("F2");
+
+        if (cameraScript != null)
+        {
+            cameraScript.speed = value; // ここで即反映
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class SensitivityChanger : MonoBehaviour
+public class TitleGo : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,10 @@ public class SensitivityChanger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PlayerPrefs.SetString("TitleText", "ゲーム中にESCで戻りました！");
+            //PlayerPrefs.SetString("TitleText", "ゲーム中にESCで戻りました！");
 
             SceneManager.LoadScene(0);
-            //// Build Settingsで一番上のシーンをロードする
+            // Build Settingsで一番上のシーンをロードする
         }
     }
 }

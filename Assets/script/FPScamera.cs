@@ -6,7 +6,7 @@ using UnityEngine;
 public class FPScamera : MonoBehaviour
 {
     float x, z;
-    float speed = 0.1f;
+    public float speed = 0.1f;
 
     public GameObject cam;          //‰ğà
     Quaternion cameraRot, characterRot;     //‰ğà
@@ -22,7 +22,7 @@ public class FPScamera : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Speed"))
         {
-            speed = PlayerPrefs.GetFloat("Speed");      //speed•Ï”‚ğ‹¤’Ê‚Ì”’l‚É‚·‚é
+            Sensitivity = PlayerPrefs.GetFloat("Speed");      //speed•Ï”‚ğ‹¤’Ê‚Ì”’l‚É‚·‚é
         }
     }
 
