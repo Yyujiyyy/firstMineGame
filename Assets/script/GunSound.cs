@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunS : MonoBehaviour
+public class GunSound : MonoBehaviour
 {
     public AudioClip sound1;
     AudioSource audioSource;

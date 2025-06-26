@@ -961,8 +961,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 397492061}
-        m_TargetAssemblyTypeName: slider, Assembly-CSharp
+      - m_Target: {fileID: 397492063}
+        m_TargetAssemblyTypeName: SensitivitySlider, Assembly-CSharp
         m_MethodName: OnSpeedChanged
         m_Mode: 0
         m_Arguments:
@@ -1057,7 +1057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397492062}
-  - component: {fileID: 397492061}
+  - component: {fileID: 397492063}
   m_Layer: 0
   m_Name: sensitivityScriptbox
   m_TagString: Untagged
@@ -1065,21 +1065,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &397492061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397492060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc9280530a935d4d8a8af088dd684dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SensitivityText: {fileID: 1779644641}
-  sensitivitySlider: {fileID: 283579049}
-  cameraScript: {fileID: 0}
 --- !u!4 &397492062
 Transform:
   m_ObjectHideFlags: 0
@@ -1095,6 +1080,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1803692993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397492063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397492060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc9280530a935d4d8a8af088dd684dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SensitivityText: {fileID: 1779644641}
+  sensitivitySlider: {fileID: 283579049}
+  cameraScript: {fileID: 0}
 --- !u!1 &436930118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,7 +2380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392682067}
-  - component: {fileID: 1392682066}
+  - component: {fileID: 1392682068}
   m_Layer: 0
   m_Name: Intro
   m_TagString: Untagged
@@ -2388,19 +2388,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1392682066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392682065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7503ec7e2ef6bc146b5781ff55e4e67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetUI: {fileID: 436930118}
 --- !u!4 &1392682067
 Transform:
   m_ObjectHideFlags: 0
@@ -2409,13 +2396,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392682065}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 867.4494, y: 349.83026, z: -866.2759}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9675903, y: -2.8768616, z: -0.9550781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1464623905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1392682068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392682065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7d310ffb33f464c98d37ad3bd351cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUIPanels: []
+  targetUI: {fileID: 436930118}
 --- !u!1 &1407495601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,18 +2507,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2667,6 +2656,7 @@ Transform:
   m_Children:
   - {fileID: 1978274333}
   - {fileID: 761058285}
+  - {fileID: 1392682067}
   m_Father: {fileID: 1803692993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496335236
@@ -2994,9 +2984,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1392682066}
-        m_TargetAssemblyTypeName: Introduce, Assembly-CSharp
-        m_MethodName: ShowUI
+      - m_Target: {fileID: 1392682068}
+        m_TargetAssemblyTypeName: UIPopupController, Assembly-CSharp
+        m_MethodName: ShowOnlyThisUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4330,4 +4320,3 @@ SceneRoots:
   - {fileID: 1581096155}
   - {fileID: 786264270}
   - {fileID: 1803692993}
-  - {fileID: 1392682067}
