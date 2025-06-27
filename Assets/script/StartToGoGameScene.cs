@@ -9,4 +9,5 @@ public class StartToGoGameScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
 }
