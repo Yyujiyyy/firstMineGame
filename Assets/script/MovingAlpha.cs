@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class AnyButtonToStart : MonoBehaviour
+public class MovingAlpha : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI targetText; // 透過させたいText
     [SerializeField] private float speed = 1f;   // 点滅の速さ
     [SerializeField] private float minAlpha = 0.2f; // 最小透明度
     [SerializeField] private float maxAlpha = 1.0f; // 最大透明度
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
