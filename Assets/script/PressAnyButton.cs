@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PressAnyButton : MonoBehaviour
 {
     private InputAction _pressAnyKeyAction;
+    [SerializeField] private string sceneName;          //GameScene
 
     private void OnEnable()
     {
@@ -26,7 +28,6 @@ public class PressAnyButton : MonoBehaviour
 
     private void OnAnyButtonPressed(InputAction.CallbackContext context)
     {
-        Debug.Log("何かのボタンが押されました！");
-        // ここにスタート処理やシーン遷移などを記述
+        SceneManager.LoadScene(sceneName);
     }
 }
