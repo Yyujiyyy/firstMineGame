@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &89897767
 Transform:
   m_ObjectHideFlags: 0
@@ -3844,9 +3844,9 @@ Transform:
   m_Children:
   - {fileID: 397492062}
   - {fileID: 1453425563}
+  - {fileID: 1987432590}
   - {fileID: 89897767}
   - {fileID: 1464623905}
-  - {fileID: 1987432590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938312419
@@ -4240,7 +4240,7 @@ GameObject:
   - component: {fileID: 1987432591}
   - component: {fileID: 1987432592}
   m_Layer: 0
-  m_Name: ScriptBox
+  m_Name: StartTextScriptBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
