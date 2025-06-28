@@ -7,7 +7,7 @@ public class AppearPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        settingPopup.SetActive(false);
     }
 
     // Update is called once per frame
