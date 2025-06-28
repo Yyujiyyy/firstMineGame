@@ -7,7 +7,7 @@ public class PressAnyButton : MonoBehaviour
     private InputAction _pressAnyKeyAction;
 
     [SerializeField] private string sceneName;       // GameScene
-    [SerializeField] private GameObject targetUI;    // 無視したいUI
+    [SerializeField] private GameObject[] targetUI;    // 無視したいUI
 
     private bool isPointerOverUI = false;
 
@@ -22,15 +22,25 @@ public class PressAnyButton : MonoBehaviour
 
     private void Update()
     {
+        isPointerOverUI = false;
+
         // マウスが targetUI 上にあるかを毎フレーム確認
         if (targetUI != null)
         {
-            isPointerOverUI = RectTransformUtility.RectangleContainsScreenPoint
-            (
-                targetUI.GetComponent<RectTransform>(),
-                Mouse.current.position.ReadValue(),
-                null // Camera を使う場合は Camera.main にする
-            );
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+
+            foreach (GameObject uiElement in targetUI)
+            {
+                if (uiElement != null)
+                {
+                    RectTransform rectTransform = uiElement.GetComponent<RectTransform>();
+                    if (rectTransform != null && RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos, null))
+                    {
+                        isPointerOverUI = true;
+                        break;
+                    }
+                }
+            }
         }
     }
 

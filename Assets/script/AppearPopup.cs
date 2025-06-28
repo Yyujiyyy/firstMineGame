@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SettingPopup : MonoBehaviour
+public class AppearPopup : MonoBehaviour
 {
     [SerializeField] public GameObject settingPopup;        //İ’è‰æ–Ê
 
