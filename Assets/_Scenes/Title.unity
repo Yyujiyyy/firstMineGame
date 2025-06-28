@@ -4336,7 +4336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: GameScene
-  targetUI: {fileID: 1400833313}
+  targetUI:
+  - {fileID: 1400833313}
+  - {fileID: 1553539431}
 --- !u!1 &2001092338
 GameObject:
   m_ObjectHideFlags: 0

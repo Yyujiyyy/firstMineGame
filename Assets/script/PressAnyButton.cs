@@ -31,7 +31,8 @@ public class PressAnyButton : MonoBehaviour
 
             foreach (GameObject uiElement in targetUI)
             {
-                if (uiElement != null)
+                //アクティブなUIに限定
+                if (uiElement != null && uiElement.activeInHierarchy)
                 {
                     RectTransform rectTransform = uiElement.GetComponent<RectTransform>();
                     if (rectTransform != null && RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos, null))
