@@ -74,7 +74,7 @@ public class FPScamera : MonoBehaviour
 
     public void UpdateCursorLock()                      //UpdateCursorLockという名前のメソッド
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             cursorLock = false;                         //cursorLockとはただのbool型の変数
         }
