@@ -434,8 +434,8 @@ GameObject:
   - component: {fileID: 199513979}
   - component: {fileID: 199513983}
   - component: {fileID: 199513984}
-  - component: {fileID: 199513986}
   - component: {fileID: 199513985}
+  - component: {fileID: 199513986}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -599,14 +599,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 199513978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6ff50373058474abb855a6b5cc20b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 504899ad49b545841906a6200aef6037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletStartPos: {fileID: 1575874462}
-  origin: {fileID: 1575874462}
-  length: 10
-  speed: 160
-  lifeTime: 5
+  bulletPrefab: {fileID: 8352087769052855435, guid: 343b1e66f23d9294da2d532a6a042026,
+    type: 3}
+  firePoint: {fileID: 1575874462}
 --- !u!1 &214508809
 GameObject:
   m_ObjectHideFlags: 0

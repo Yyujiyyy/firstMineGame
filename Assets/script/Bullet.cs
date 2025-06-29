@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 50f;
+    public float speed = 1000f;
     public float maxDistance = 100f;
 
     private Vector3 direction;
@@ -13,7 +13,13 @@ public class Bullet : MonoBehaviour
         startPos = origin;
         direction = (target - origin).normalized;
         transform.position = origin;
+
+        // Mesh‚ð”ñ•\Ž¦‚É‚·‚é‚È‚ç‚±‚±
+        var mesh = GetComponent<MeshRenderer>();
+        if (mesh != null) mesh.enabled = false;
     }
+
+
 
     void Update()
     {
