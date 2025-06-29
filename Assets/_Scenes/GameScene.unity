@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6ff50373058474abb855a6b5cc20b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletStartPos: {fileID: 1575874462}
   origin: {fileID: 1575874462}
   length: 10
   speed: 160
