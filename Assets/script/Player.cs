@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GraphicRaycaster uiRaycaster;
     [SerializeField] private EventSystem eventSystem;
 
+    // RayでヒットしたUI対象を記録（連続して同じ対象を処理しないようにする）
+    private OnTrigger currentRayTarget = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,27 +40,6 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // ================================
-            // UIボタンに対するRay判定
-            // ================================
-
-            // PointerEventDataを生成し、画面中心座標をセット（またはInput.mousePositionでもOK）
-            PointerEventData pointerData = new PointerEventData(eventSystem);
-            pointerData.position = new Vector2(Screen.width / 2, Screen.height / 2);  // 画面中央からRayを出す
-
-            List<RaycastResult> uiResults = new List<RaycastResult>();
-            uiRaycaster.Raycast(pointerData, uiResults);
-
-            foreach (RaycastResult result in uiResults)
-            {
-                Button btn = result.gameObject.GetComponent<Button>();
-                if (btn != null)
-                {
-                    btn.onClick.Invoke(); // ボタンのクリックイベントを実行
-                    return; // ボタンがクリックされた場合、以降の処理は行わない
-                }
-            }
-
-            // ================================
             // 通常の3D空間へのRay判定
             // ================================
 
@@ -77,6 +59,31 @@ public class Player : MonoBehaviour
                     {
                         _random.EnemyGenerate();            //_random に入っているオブジェクトに対して EnemyGenerate() を呼び出す
                     }
+                }
+
+                // ================================
+                // レイが "UIButton" に当たった場合 UI 表示
+                // ================================
+                if (hitInfo.collider.CompareTag("UIButton"))
+                {
+                    OnTrigger target = hitInfo.collider.GetComponent<OnTrigger>();
+                    if (target != null && target != currentRayTarget)
+                    {
+                        if (currentRayTarget != null)
+                            currentRayTarget.HideUI(); // 前のターゲットのUIを非表示
+
+                        target.ShowUI();               // 今のターゲットのUIを表示
+                        currentRayTarget = target;     // 記録更新
+                    }
+                }
+            }
+            else
+            {
+                // Rayが何にも当たらなかった場合、UIを隠す
+                if (currentRayTarget != null)
+                {
+                    currentRayTarget.HideUI();
+                    currentRayTarget = null;
                 }
             }
         }
