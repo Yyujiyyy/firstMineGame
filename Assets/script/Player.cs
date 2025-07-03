@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
             {
                 if (hitInfo.collider.CompareTag("enemy"))
                 {
+                    Debug.Log("RayHit : Enemy");
                     //particle.transform.position = hitInfo.point;       //particleの位置を当たった位置にする（ワープ先についてこない）
                     //instantiateするから必要ない↑
                     Instantiate(particle, hitInfo.point, Quaternion.identity);
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
                 // ================================
                 if (hitInfo.collider.CompareTag("CheckBox"))
                 {
+                    Debug.Log("RayHit : CheckBox");
                     CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
                     if (target != null && target != currentRayTarget)
                     {
