@@ -1,26 +1,26 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-public class OnTrigger : MonoBehaviour
+public class CheckBox : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonTextObject; // ButtonのTextオブジェクトをアサイン
+    [SerializeField] private GameObject TextObject; // ButtonのTextオブジェクトをアサイン
     [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
 
     private void Start()
     {
         // 最初は非表示にしておく
-        buttonTextObject.SetActive(false);
+        TextObject.SetActive(false);
     }
 
     public void ShowUI()
     {
-        buttonTextObject.SetActive(true);
+        TextObject.SetActive(true);
 
         countUpTimer?.StartTimer();
     }
 
     public void HideUI()
     {
-        buttonTextObject?.SetActive(false);
+        TextObject?.SetActive(false);
     }
 }

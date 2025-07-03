@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
 
     // RayでヒットしたUI対象を記録（連続して同じ対象を処理しないようにする）
-    private OnTrigger currentRayTarget = null;
+    private CheckBox currentRayTarget = null;
 
     // Start is called before the first frame update
     void Start()
@@ -62,11 +62,11 @@ public class Player : MonoBehaviour
                 }
 
                 // ================================
-                // レイが "UIButton" に当たった場合 UI 表示
+                // レイが "CheckBox" に当たった場合 UI 表示
                 // ================================
-                if (hitInfo.collider.CompareTag("UIButton"))
+                if (hitInfo.collider.CompareTag("CheckBox"))
                 {
-                    OnTrigger target = hitInfo.collider.GetComponent<OnTrigger>();
+                    CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
                     if (target != null && target != currentRayTarget)
                     {
                         if (currentRayTarget != null)
