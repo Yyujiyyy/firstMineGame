@@ -11,19 +11,13 @@ public class OnTrigger : MonoBehaviour
         buttonTextObject.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ShowUI()
     {
-        if (other.CompareTag("Bullet"))
-        {
-            buttonTextObject.SetActive(true);
-        }
+        buttonTextObject.SetActive(true);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void HideUI()
     {
-        if (other.CompareTag("Bullet"))
-        {
-            buttonTextObject.SetActive(false);
-        }
+        buttonTextObject?.SetActive(false);
     }
 }
