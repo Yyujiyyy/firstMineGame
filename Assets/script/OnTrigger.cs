@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class OnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject buttonTextObject; // ButtonのTextオブジェクトをアサイン
+    [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
 
     private void Start()
     {
@@ -14,6 +15,8 @@ public class OnTrigger : MonoBehaviour
     public void ShowUI()
     {
         buttonTextObject.SetActive(true);
+
+        countUpTimer?.StartTimer();
     }
 
     public void HideUI()

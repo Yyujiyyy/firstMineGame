@@ -79,12 +79,13 @@ public class Player : MonoBehaviour
             }
             else
             {
-                // Ray‚ª‰½‚É‚à“–‚½‚ç‚È‚©‚Á‚½ê‡AUI‚ğ‰B‚·
-                if (currentRayTarget != null)
-                {
-                    currentRayTarget.HideUI();
-                    currentRayTarget = null;
-                }
+                //// Ray‚ª‰½‚É‚à“–‚½‚ç‚È‚©‚Á‚½ê‡AUI‚ğ‰B‚·
+                //if (currentRayTarget != null)
+                //{
+                //    currentRayTarget.HideUI();
+                //    currentRayTarget = null;
+                //    Debug.Log("‚È‚É‚à‚È‚¢");
+                //}
             }
         }
     }
