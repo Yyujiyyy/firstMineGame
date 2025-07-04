@@ -20,8 +20,8 @@ public class CountUpTimer : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);
-        int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
-        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        //int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void StartTimer() => isRunning = true;
