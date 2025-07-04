@@ -5,6 +5,7 @@ public class CheckBox : MonoBehaviour
 {
     [SerializeField] private GameObject TextObject; // ButtonのTextオブジェクトをアサイン
     [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
+    [SerializeField] private GameObject _enemy;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class CheckBox : MonoBehaviour
         TextObject.SetActive(true);
 
         countUpTimer?.StartTimer();
+
+        _enemy.SetActive(false);
     }
 
     public void HideUI()

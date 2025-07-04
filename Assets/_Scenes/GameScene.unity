@@ -1740,6 +1740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextObject: {fileID: 0}
   countUpTimer: {fileID: 0}
+  _enemy: {fileID: 0}
 --- !u!1 &755835604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,6 +3088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextObject: {fileID: 2005430299}
   countUpTimer: {fileID: 1340920961}
+  _enemy: {fileID: 421960412}
 --- !u!65 &1510936453
 BoxCollider:
   m_ObjectHideFlags: 0
