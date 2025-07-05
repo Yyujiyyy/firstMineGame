@@ -1,22 +1,24 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
+using UnityEditor.PackageManager;
+//using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private EnemyController _random;
-    public ParticleSystem particle;   // Hierarchyã‚ÌParticleSystem‚ğw’è
+    public ParticleSystem particle;   // Hierarchyä¸Šã®ParticleSystemã‚’æŒ‡å®š
     [SerializeField] public Transform enemy;
     [SerializeField] private RandomEnemy _randomEnemy;
+    [SerializeField] private CountDown50 _countdown;     //ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å‚ç…§
     Transform _tr;
 
-    // UIŠÖ˜AiInspector‚Åİ’èj
+    // UIé–¢é€£ï¼ˆInspectorã§è¨­å®šï¼‰
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GraphicRaycaster uiRaycaster;
     [SerializeField] private EventSystem eventSystem;
 
-    // Ray‚Åƒqƒbƒg‚µ‚½UI‘ÎÛ‚ğ‹L˜^i˜A‘±‚µ‚Ä“¯‚¶‘ÎÛ‚ğˆ—‚µ‚È‚¢‚æ‚¤‚É‚·‚éj
+    // Rayã§ãƒ’ãƒƒãƒˆã—ãŸUIå¯¾è±¡ã‚’è¨˜éŒ²ï¼ˆé€£ç¶šã—ã¦åŒã˜å¯¾è±¡ã‚’å‡¦ç†ã—ãªã„ã‚ˆã†ã«ã™ã‚‹ï¼‰
     private CheckBox currentRayTarget = null;
 
     // Start is called before the first frame update
@@ -25,11 +27,11 @@ public class Player : MonoBehaviour
         enemy = GameObject.FindWithTag("enemy").transform;
 
         _random = GameObject.FindObjectOfType<EnemyController>();
-        //‚±‚ê‚ÅƒV[ƒ““à‚ÌÅ‰‚ÉŒ©‚Â‚©‚Á‚½ EnemyController ‚ğ _random ‚ÉƒZƒbƒg‚Å‚«‚éB
+        //ã“ã‚Œã§ã‚·ãƒ¼ãƒ³å†…ã®æœ€åˆã«è¦‹ã¤ã‹ã£ãŸ EnemyController ã‚’ _random ã«ã‚»ãƒƒãƒˆã§ãã‚‹ã€‚
 
         _tr = transform;
 
-        // ƒJƒƒ‰‚ª–¢İ’è‚È‚ç©“®‚Åæ“¾
+        // ã‚«ãƒ¡ãƒ©ãŒæœªè¨­å®šãªã‚‰è‡ªå‹•ã§å–å¾—
         if (mainCamera == null)
             mainCamera = Camera.main;
     }
@@ -37,34 +39,29 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒ}ƒEƒX‚ğ¶ƒNƒŠƒbƒN‚µ‚½‚Æ‚«
+        //ãƒã‚¦ã‚¹ã‚’å·¦ã‚¯ãƒªãƒƒã‚¯ã—ãŸã¨ã
         if (Input.GetMouseButtonDown(0))
         {
             // ================================
-            // ’Êí‚Ì3D‹óŠÔ‚Ö‚ÌRay”»’è
+            // é€šå¸¸ã®3Dç©ºé–“ã¸ã®Rayåˆ¤å®š
             // ================================
 
-            //V‚µ‚¢Ray‚ğì‚éB
+            //æ–°ã—ã„Rayã‚’ä½œã‚‹ã€‚
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-            //Ray‚Ì”­Ë’n“_               ,•ûŒü
+            //Rayã®ç™ºå°„åœ°ç‚¹               ,æ–¹å‘
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
             {
                 if (hitInfo.collider.CompareTag("enemy"))
                 {
                     //Debug.Log("RayHit : Enemy");
-                    //particle.transform.position = hitInfo.point;       //particle‚ÌˆÊ’u‚ğ“–‚½‚Á‚½ˆÊ’u‚É‚·‚éiƒ[ƒvæ‚É‚Â‚¢‚Ä‚±‚È‚¢j
-                    //instantiate‚·‚é‚©‚ç•K—v‚È‚¢ª
-                    Instantiate(particle, hitInfo.point, Quaternion.identity);
-
-                    if (_random != null)                    //nullƒ`ƒFƒbƒN      ‰ğà
-                    {
-                        _random.EnemyGenerate();            //_random ‚É“ü‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä EnemyGenerate() ‚ğŒÄ‚Ño‚·
-                    }
+                    //particle.transform.position = hitInfo.point;       //particleã®ä½ç½®ã‚’å½“ãŸã£ãŸä½ç½®ã«ã™ã‚‹ï¼ˆãƒ¯ãƒ¼ãƒ—å…ˆã«ã¤ã„ã¦ã“ãªã„ï¼‰
+                    //instantiateã™ã‚‹ã‹ã‚‰å¿…è¦ãªã„â†‘
+                    
                 }
 
                 // ================================
-                // ƒŒƒC‚ª "CheckBox" ‚É“–‚½‚Á‚½ê‡ UI •\¦
+                // ãƒ¬ã‚¤ãŒ "CheckBox" ã«å½“ãŸã£ãŸå ´åˆ UI è¡¨ç¤º
                 // ================================
                 if (hitInfo.collider.CompareTag("CheckBox"))
                 {
@@ -73,36 +70,42 @@ public class Player : MonoBehaviour
                     if (target != null && target != currentRayTarget)
                     {
                         if (currentRayTarget != null)
-                            currentRayTarget.HideUI(); // ‘O‚Ìƒ^[ƒQƒbƒg‚ÌUI‚ğ”ñ•\¦
+                            currentRayTarget.HideUI(); // å‰ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®UIã‚’éè¡¨ç¤º
 
-                        target.ShowUI();               // ¡‚Ìƒ^[ƒQƒbƒg‚ÌUI‚ğ•\¦
-                        currentRayTarget = target;     // ‹L˜^XV
+                        target.ShowUI();               // ä»Šã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®UIã‚’è¡¨ç¤º
+                        currentRayTarget = target;     // è¨˜éŒ²æ›´æ–°
                     }
                 }
 
                 // ================================
-                // ƒŒƒC‚ª "RandomEnemy" ‚É“–‚½‚Á‚½ê‡ RandomEnemyGenerate();
+                // ãƒ¬ã‚¤ãŒ "RandomEnemy" ã«å½“ãŸã£ãŸå ´åˆ RandomEnemyGenerate();
                 // ================================
                 if (hitInfo.collider.CompareTag("RandomEnemy"))
                 {
-                    Instantiate(particle, hitInfo.point, Quaternion.identity);
-
-                    if (_random != null)                    //nullƒ`ƒFƒbƒN      ‰ğà
-                    {
-                        _randomEnemy.EnemyGenerate();            //_random ‚É“ü‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä EnemyGenerate() ‚ğŒÄ‚Ño‚·
-                    }
+                    Generate(hitInfo);
                 }
             }
             else
             {
-                //// Ray‚ª‰½‚É‚à“–‚½‚ç‚È‚©‚Á‚½ê‡AUI‚ğ‰B‚·
+                //// RayãŒä½•ã«ã‚‚å½“ãŸã‚‰ãªã‹ã£ãŸå ´åˆã€UIã‚’éš ã™
                 //if (currentRayTarget != null)
                 //{
                 //    currentRayTarget.HideUI();
                 //    currentRayTarget = null;
-                //    Debug.Log("‚È‚É‚à‚È‚¢");
+                //    Debug.Log("ãªã«ã‚‚ãªã„");
                 //}
             }
-        }
+        } 
     }
+
+    public void Generate(RaycastHit hitInfo)
+    {
+        Instantiate(particle, hitInfo.point, Quaternion.identity);
+
+        if (_random != null)                    //nullãƒã‚§ãƒƒã‚¯      è§£èª¬
+        {
+            _randomEnemy.EnemyGenerate();            //_random ã«å…¥ã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ EnemyGenerate() ã‚’å‘¼ã³å‡ºã™
+            _countdown.DocumentCount();         //ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å®Ÿè¡Œ
+        }
+    } 
 }
