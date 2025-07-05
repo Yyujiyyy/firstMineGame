@@ -182,7 +182,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c13609a3d6f6ac40930ccad9f4c5e3f, type: 2}
+  - {fileID: 2100000, guid: 0e18e6a190f5a934d892cbf859c78c95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1512,7 +1512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c13609a3d6f6ac40930ccad9f4c5e3f, type: 2}
+  - {fileID: 2100000, guid: 0e18e6a190f5a934d892cbf859c78c95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2997,7 +2997,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c13609a3d6f6ac40930ccad9f4c5e3f, type: 2}
+  - {fileID: 2100000, guid: 0e18e6a190f5a934d892cbf859c78c95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3367,6 +3367,7 @@ MonoBehaviour:
   _HideObj:
   - {fileID: 577023615}
   - {fileID: 421960412}
+  - {fileID: 100030, guid: 59945dece27e7614b9aae48d188769ce, type: 3}
 --- !u!65 &1510936453
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3630,7 +3631,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c13609a3d6f6ac40930ccad9f4c5e3f, type: 2}
+  - {fileID: 2100000, guid: 0e18e6a190f5a934d892cbf859c78c95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
                 // ================================
                 if (hitInfo.collider.CompareTag("CheckBox"))
                 {
-                    Debug.Log("RayHit : CheckBox");
+                    //Debug.Log("RayHit : CheckBox");
                     CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
                     if (target != null && target != currentRayTarget)
                     {
