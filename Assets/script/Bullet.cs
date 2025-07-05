@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
         direction = (target - origin).normalized;
         transform.position = origin;
 
-        // Mesh‚ğ”ñ•\¦‚É‚·‚é‚È‚ç‚±‚±
+        // Meshã‚’éè¡¨ç¤ºã«ã™ã‚‹ãªã‚‰ã“ã“
         var mesh = GetComponent<MeshRenderer>();
         if (mesh != null) mesh.enabled = false;
     }
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
 
         if (Vector3.Distance(startPos, transform.position) > maxDistance)
         {
-            Destroy(gameObject); // ˆê’è‹——£’´‚¦‚½‚çíœ
+            Destroy(gameObject); // ä¸€å®šè·é›¢è¶…ãˆãŸã‚‰å‰Šé™¤
         }
     }
 }

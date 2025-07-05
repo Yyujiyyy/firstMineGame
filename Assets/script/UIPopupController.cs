@@ -1,19 +1,19 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class UIPopupController : MonoBehaviour
 {
-    public GameObject[] allUIPanels;  // •\¦‚³‚ê‚é‰Â”\«‚Ì‚ ‚é‘SUI
-    public GameObject targetUI;       // ¡‰ñ•\¦‚µ‚½‚¢UI
+    public GameObject[] allUIPanels;  // è¡¨ç¤ºã•ã‚Œã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹å…¨UI
+    public GameObject targetUI;       // ä»Šå›è¡¨ç¤ºã—ãŸã„UI
 
     public void ShowOnlyThisUI()
     {
-        // ‘SUI‚ğˆê’U”ñ•\¦‚É
+        // å…¨UIã‚’ä¸€æ—¦éè¡¨ç¤ºã«
         foreach (var panel in allUIPanels)
         {
             panel.SetActive(false);
         }
 
-        // –Ú“I‚ÌUI‚¾‚¯•\¦
+        // ç›®çš„ã®UIã ã‘è¡¨ç¤º
         targetUI.SetActive(true);
     }
 }

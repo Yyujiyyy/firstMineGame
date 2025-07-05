@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +18,7 @@ public class OnMouseCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒ}ƒEƒX‚ªƒ{ƒ^ƒ“‚Ìã‚É‚ ‚é‚©‚Ç‚¤‚©
+        //ãƒã‚¦ã‚¹ãŒãƒœã‚¿ãƒ³ã®ä¸Šã«ã‚ã‚‹ã‹ã©ã†ã‹
         if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition))
         {
             

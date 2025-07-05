@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Alpha1ToTitleGo : MonoBehaviour
@@ -9,7 +9,7 @@ public class Alpha1ToTitleGo : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SceneManager.LoadScene(0);
-            // Build Settings‚Åˆê”Ôã‚ÌƒV[ƒ“‚ğƒ[ƒh‚·‚é
+            // Build Settingsã§ä¸€ç•ªä¸Šã®ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
         }
     }
 }

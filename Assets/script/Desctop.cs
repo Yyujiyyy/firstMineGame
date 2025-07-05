@@ -1,14 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ExitButton : MonoBehaviour
 {
     public void OnExitButtonClicked()
     {
-        // �G�f�B�^��ł͎~�܂�Ȃ��̂ŁA�ȉ��̃R�[�h�Œ�~��������
+        // エディタ上では止まらないので、以下のコードで停止させられる
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // �r���h��͂���ŃA�v���P�[�V�������I���ł���i���f�X�N�g�b�v�ɖ߂�j
+        // ビルド後はこれでアプリケーションを終了できる（＝デスクトップに戻る）
         Application.Quit();
 #endif
     }

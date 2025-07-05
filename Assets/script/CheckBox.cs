@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 
 public class CheckBox : MonoBehaviour
 {
-    [SerializeField] private GameObject TextObject; // Button‚ÌTextƒIƒuƒWƒFƒNƒg‚ğƒAƒTƒCƒ“
-    [SerializeField] private CountUpTimer countUpTimer;   // ƒ^ƒCƒ}[ƒXƒNƒŠƒvƒg‚ğƒAƒTƒCƒ“
+    [SerializeField] private GameObject TextObject; // Buttonã®Textã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¢ã‚µã‚¤ãƒ³
+    [SerializeField] private CountUpTimer countUpTimer;   // ã‚¿ã‚¤ãƒãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ã‚¢ã‚µã‚¤ãƒ³
     [SerializeField] private GameObject _Enemy;
     [SerializeField] private GameObject _R_enemy;
     [SerializeField] private GameObject[] _HideObj;
 
     private void Start()
     {
-        // Å‰‚Í”ñ•\¦‚É‚µ‚Ä‚¨‚­
+        // æœ€åˆã¯éè¡¨ç¤ºã«ã—ã¦ãŠã
         TextObject.SetActive(false);
     }
 
@@ -21,7 +21,7 @@ public class CheckBox : MonoBehaviour
 
         countUpTimer?.StartTimer();
 
-        //_HideObj ‚É“ü‚Á‚Ä‚¢‚é‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚ÄA‡”Ô‚É obj ‚Æ‚¢‚¤•Ï”–¼‚Åg‚¦‚é‚æ‚¤‚É‚·‚éB
+        //_HideObj ã«å…¥ã£ã¦ã„ã‚‹å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ã€é †ç•ªã« obj ã¨ã„ã†å¤‰æ•°åã§ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
         foreach (GameObject obj in _HideObj)
         {
             obj.SetActive(false);

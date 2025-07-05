@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AppearPopup : MonoBehaviour
 {
-    [SerializeField] public GameObject settingPopup;        //İ’è‰æ–Ê
+    [SerializeField] public GameObject settingPopup;        //è¨­å®šç”»é¢
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class AppearPopup : MonoBehaviour
         
     }
 
-    public void AppearSettingPopup()        //void AppearSettingPopup‚Å‚ÍOnclick‚ÅƒAƒNƒZƒX‚Å‚«‚È‚¢I
+    public void AppearSettingPopup()        //void AppearSettingPopupã§ã¯Onclickã§ã‚¢ã‚¯ã‚»ã‚¹ã§ããªã„ï¼
     {
         settingPopup.SetActive(true);
     }

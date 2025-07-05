@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GunSound : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class GunSound : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //��(sound1)��炷
+            //音(sound1)を鳴らす
             audioSource.PlayOneShot(sound1);
         }
     }

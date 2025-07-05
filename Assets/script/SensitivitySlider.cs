@@ -1,27 +1,27 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class SensitivitySlider : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI SensitivityText;
-    [SerializeField] private UnityEngine.UI.Slider sensitivitySlider; // ƒXƒ‰ƒCƒ_[QÆ
-    [SerializeField] private TMP_InputField inputFieldSensitivity; // © ’Ç‰ÁF”’l“ü—Í—“
+    [SerializeField] private UnityEngine.UI.Slider sensitivitySlider; // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼å‚ç…§
+    [SerializeField] private TMP_InputField inputFieldSensitivity; // â† è¿½åŠ ï¼šæ•°å€¤å…¥åŠ›æ¬„
 
-    public FPScamera cameraScript; // FPSƒJƒƒ‰ƒXƒNƒŠƒvƒgQÆ
+    public FPScamera cameraScript; // FPSã‚«ãƒ¡ãƒ©ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‚ç…§
 
     // Start is called before the first frame update
     void Start()
     {
-        sensitivitySlider.maxValue = 10.0f;         // ƒXƒ‰ƒCƒ_[‚ÌãŒÀ‚ğ•ÏX(10.0‚É•ÏX)
+        sensitivitySlider.maxValue = 10.0f;         // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ä¸Šé™ã‚’å¤‰æ›´(10.0ã«å¤‰æ›´)
 
-        // •Û‘¶‚³‚ê‚½’l‚ğæ“¾B‚È‚¯‚ê‚ÎƒfƒtƒHƒ‹ƒg1.0f
+        // ä¿å­˜ã•ã‚ŒãŸå€¤ã‚’å–å¾—ã€‚ãªã‘ã‚Œã°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ1.0f
         float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
 
-        // ƒXƒ‰ƒCƒ_[‚ÆƒeƒLƒXƒg‚É”½‰f
+        // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ãƒ†ã‚­ã‚¹ãƒˆã«åæ˜ 
         sensitivitySlider.value = savedSensitivity;
         UpdateSensitivityDisplay(savedSensitivity);
 
-        // ƒCƒxƒ“ƒgƒŠƒXƒi[“o˜^
+        // ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠãƒ¼ç™»éŒ²
         sensitivitySlider.onValueChanged.AddListener(OnSpeedChanged);
         inputFieldSensitivity.onEndEdit.AddListener(OnInputFieldChanged);
 
@@ -30,12 +30,12 @@ public class SensitivitySlider : MonoBehaviour
 
     public void OnSpeedChanged(float value)
     {
-        PlayerPrefs.SetFloat("Sensitivity", value); // Š´“x•Û‘¶
+        PlayerPrefs.SetFloat("Sensitivity", value); // æ„Ÿåº¦ä¿å­˜
         UpdateSensitivityDisplay(value);
 
         if (cameraScript != null)
         {
-            cameraScript.Sensitivity = value; // ‚±‚±‚Å‘¦”½‰f
+            cameraScript.Sensitivity = value; // ã“ã“ã§å³åæ˜ 
         }
     }
 
@@ -44,11 +44,11 @@ public class SensitivitySlider : MonoBehaviour
         if (float.TryParse(input, out float value))
         {
             value = Mathf.Clamp(value, sensitivitySlider.minValue, sensitivitySlider.maxValue);
-            sensitivitySlider.value = value; // © ©“®‚ÅOnSpeedChanged‚ªŒÄ‚Î‚ê‚Ü‚·
+            sensitivitySlider.value = value; // â† è‡ªå‹•ã§OnSpeedChangedãŒå‘¼ã°ã‚Œã¾ã™
         }
         else
         {
-            // –³Œø‚È“ü—Í‚È‚çƒXƒ‰ƒCƒ_[‚Ì’l‚ğÄ•\¦
+            // ç„¡åŠ¹ãªå…¥åŠ›ãªã‚‰ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®å€¤ã‚’å†è¡¨ç¤º
             inputFieldSensitivity.text = sensitivitySlider.value.ToString("F2");
         }
     }

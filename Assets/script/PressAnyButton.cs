@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -7,31 +7,31 @@ public class PressAnyButton : MonoBehaviour
     private InputAction _pressAnyKeyAction;
 
     [SerializeField] private string sceneName;       // GameScene
-    [SerializeField] private GameObject[] targetUI;    // –³‹‚µ‚½‚¢UI
+    [SerializeField] private GameObject[] targetUI;    // ç„¡è¦–ã—ãŸã„UI
 
     private bool isPointerOverUI = false;
 
     private void Awake()
     {
-        // ”CˆÓ‚Ìƒ{ƒ^ƒ““ü—Í‚ğŒŸ’m‚·‚éƒAƒNƒVƒ‡ƒ“‚ğì¬
+        // ä»»æ„ã®ãƒœã‚¿ãƒ³å…¥åŠ›ã‚’æ¤œçŸ¥ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½œæˆ
         _pressAnyKeyAction = new InputAction(type: InputActionType.PassThrough, binding: "*/<Button>", interactions: "Press");
-        // “ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰“o˜^
+        // å…¥åŠ›ãŒã‚ã£ãŸã¨ãã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ç™»éŒ²
         _pressAnyKeyAction.performed += OnAnyButtonPressed;
-        _pressAnyKeyAction.Enable(); // í‚É—LŒø‰»i‚½‚¾‚µÀs‚Íƒzƒo[’†‚Ì‚İj
+        _pressAnyKeyAction.Enable(); // å¸¸ã«æœ‰åŠ¹åŒ–ï¼ˆãŸã ã—å®Ÿè¡Œã¯ãƒ›ãƒãƒ¼ä¸­ã®ã¿ï¼‰
     }
 
     private void Update()
     {
         isPointerOverUI = false;
 
-        // ƒ}ƒEƒX‚ª targetUI ã‚É‚ ‚é‚©‚ğ–ˆƒtƒŒ[ƒ€Šm”F
+        // ãƒã‚¦ã‚¹ãŒ targetUI ä¸Šã«ã‚ã‚‹ã‹ã‚’æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ç¢ºèª
         if (targetUI != null)
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
 
             foreach (GameObject uiElement in targetUI)
             {
-                //ƒAƒNƒeƒBƒu‚ÈUI‚ÉŒÀ’è
+                //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªUIã«é™å®š
                 if (uiElement != null && uiElement.activeInHierarchy)
                 {
                     RectTransform rectTransform = uiElement.GetComponent<RectTransform>();

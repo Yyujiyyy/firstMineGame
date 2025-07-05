@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class FPScamera : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class FPScamera : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            Sensitivity = PlayerPrefs.GetFloat("Sensitivity");      //Sensitivity•Ï”‚ğ‹¤’Ê‚Ì”’l‚É‚·‚é
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity");      //Sensitivityå¤‰æ•°ã‚’å…±é€šã®æ•°å€¤ã«ã™ã‚‹
         }
     }
 
@@ -28,55 +28,55 @@ public class FPScamera : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            Sensitivity = PlayerPrefs.GetFloat("Sensitivity"); // –ˆƒtƒŒ[ƒ€æ“¾
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity"); // æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
         }
 
         float xRot = Input.GetAxisRaw("Mouse X") * Sensitivity;
         float yRot = Input.GetAxisRaw("Mouse Y") * Sensitivity;
-        //ƒ}ƒEƒX‚ÌˆÚ“®—Ê@       ~@   Š´“x
+        //ãƒã‚¦ã‚¹ã®ç§»å‹•é‡ã€€       Ã—ã€€   æ„Ÿåº¦
 
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);            //‚SŒ³”‚ğƒIƒCƒ‰[Šp‚ğg‚Á‚Äx,y,z‚Å‰ñ“]‚ğ•\‚µ‚Ä‚¢‚é
-        characterRot *= Quaternion.Euler(0, xRot, 0);          //‚SŒ³”‚ğƒIƒCƒ‰[Šp‚ğg‚Á‚Äx,y,z‚Å‰ñ“]‚ğ•\‚µ‚Ä‚¢‚é
-                                                               //z‚ÍŠî–{“I‚É‰ñ“]‚É‚Íg‚í‚È‚¢
-        //Update‚Ì’†‚Åì¬‚µ‚½ŠÖ”‚ğŒÄ‚Ô
+        cameraRot *= Quaternion.Euler(-yRot, 0, 0);            //ï¼”å…ƒæ•°ã‚’ã‚ªã‚¤ãƒ©ãƒ¼è§’ã‚’ä½¿ã£ã¦x,y,zã§å›è»¢ã‚’è¡¨ã—ã¦ã„ã‚‹
+        characterRot *= Quaternion.Euler(0, xRot, 0);          //ï¼”å…ƒæ•°ã‚’ã‚ªã‚¤ãƒ©ãƒ¼è§’ã‚’ä½¿ã£ã¦x,y,zã§å›è»¢ã‚’è¡¨ã—ã¦ã„ã‚‹
+                                                               //zã¯åŸºæœ¬çš„ã«å›è»¢ã«ã¯ä½¿ã‚ãªã„
+        //Updateã®ä¸­ã§ä½œæˆã—ãŸé–¢æ•°ã‚’å‘¼ã¶
         cameraRot = ClampRotation(cameraRot);           
 
-        cam.transform.localRotation = cameraRot;               //ŒvZŒ‹‰Ê‚ğ”½‰f
-        transform.localRotation = characterRot;                //ŒvZŒ‹‰Ê‚ğ”½‰f
+        cam.transform.localRotation = cameraRot;               //è¨ˆç®—çµæœã‚’åæ˜ 
+        transform.localRotation = characterRot;                //è¨ˆç®—çµæœã‚’åæ˜ 
 
         UpdateCursorLock();
 
     }
 
     private void FixedUpdate()
-    //–ˆƒtƒŒ[ƒ€‚Å‚Í‚È‚­Ah•¨—‰‰Z‚ÌXVƒ^ƒCƒ~ƒ“ƒOh‚ÅŒÄ‚Î‚ê‚éŠÖ”
-    //‚±‚ÌƒXƒNƒŠƒvƒg‚Å FixedUpdate() ‚ğg‚¤——R‚ÍAu•¨—ƒx[ƒX‚Ì“®‚«iRigidbody‚È‚µ‚Å‚àjv‚ğˆÀ’è‚µ‚ÄÀs‚·‚é‚½‚ß
+    //æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã¯ãªãã€â€ç‰©ç†æ¼”ç®—ã®æ›´æ–°ã‚¿ã‚¤ãƒŸãƒ³ã‚°â€ã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
+    //ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ FixedUpdate() ã‚’ä½¿ã†ç†ç”±ã¯ã€ã€Œç‰©ç†ãƒ™ãƒ¼ã‚¹ã®å‹•ãï¼ˆRigidbodyãªã—ã§ã‚‚ï¼‰ã€ã‚’å®‰å®šã—ã¦å®Ÿè¡Œã™ã‚‹ãŸã‚
     {
         x = 0;
         z = 0;
 
-        x = Input.GetAxisRaw("Horizontal") * speed;     //Horixontal‚Æ‚Í‘OŒãˆÚ“®iWSj‚ğ•\‚·
-        z = Input.GetAxisRaw("Vertical") * speed;       //Vertical‚Æ‚Í¶‰EˆÚ“®iADj‚ğ•\‚·
+        x = Input.GetAxisRaw("Horizontal") * speed;     //Horixontalã¨ã¯å‰å¾Œç§»å‹•ï¼ˆWSï¼‰ã‚’è¡¨ã™
+        z = Input.GetAxisRaw("Vertical") * speed;       //Verticalã¨ã¯å·¦å³ç§»å‹•ï¼ˆADï¼‰ã‚’è¡¨ã™
         //transform.position += new Vector3(x,0,z);
 
         Vector3 forward = cam.transform.forward; 
         Vector3 right = cam.transform.right;
 
-        forward.y = 0f;  // ã‰º¬•ª‚ğÁ‚·B‚Â‚Ü‚èA‚—A‚“ƒL[‚ÅƒWƒƒƒ“ƒv‚µ‚È‚­‚È‚é
+        forward.y = 0f;  // ä¸Šä¸‹æˆåˆ†ã‚’æ¶ˆã™ã€‚ã¤ã¾ã‚Šã€ï½—ã€ï½“ã‚­ãƒ¼ã§ã‚¸ãƒ£ãƒ³ãƒ—ã—ãªããªã‚‹
         right.y = 0f;
 
-        forward.Normalize();        //ƒXƒJƒ‰[‚ğ‚P‚É‚µ‚ÄAŒü‚«‚Ì‚İ‚Ì¬•ª‚É‚µ‚Ä‚¢‚é
-        right.Normalize();          //ƒXƒJƒ‰[‚ğ‚P‚É‚µ‚ÄAŒü‚«‚Ì‚İ‚Ì¬•ª‚É‚µ‚Ä‚¢‚é
+        forward.Normalize();        //ã‚¹ã‚«ãƒ©ãƒ¼ã‚’ï¼‘ã«ã—ã¦ã€å‘ãã®ã¿ã®æˆåˆ†ã«ã—ã¦ã„ã‚‹
+        right.Normalize();          //ã‚¹ã‚«ãƒ©ãƒ¼ã‚’ï¼‘ã«ã—ã¦ã€å‘ãã®ã¿ã®æˆåˆ†ã«ã—ã¦ã„ã‚‹
 
         transform.position += forward * z + right * x;
-                            //Œü‚«*ˆÚ“®—Ê + Œü‚« * ˆÚ“®—Ê
+                            //å‘ã*ç§»å‹•é‡ + å‘ã * ç§»å‹•é‡
     }
 
-    public void UpdateCursorLock()                      //UpdateCursorLock‚Æ‚¢‚¤–¼‘O‚Ìƒƒ\ƒbƒh
+    public void UpdateCursorLock()                      //UpdateCursorLockã¨ã„ã†åå‰ã®ãƒ¡ã‚½ãƒƒãƒ‰
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            cursorLock = false;                         //cursorLock‚Æ‚Í‚½‚¾‚ÌboolŒ^‚Ì•Ï”
+            cursorLock = false;                         //cursorLockã¨ã¯ãŸã ã®boolå‹ã®å¤‰æ•°
         }
 
         else if(Input.GetMouseButton(0))
@@ -87,35 +87,35 @@ public class FPScamera : MonoBehaviour
 
         if (cursorLock)
         {
-            Cursor.lockState = CursorLockMode.Locked;   //Loked‚É‚·‚éƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ‰æ–Ê‚Ì’†S‚ÉŒÅ’è‚µ‚Ä”ñ•\¦‚É‚µ‚Ä‚­‚ê‚é
+            Cursor.lockState = CursorLockMode.Locked;   //Lokedã«ã™ã‚‹ï¼ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç”»é¢ã®ä¸­å¿ƒã«å›ºå®šã—ã¦éè¡¨ç¤ºã«ã—ã¦ãã‚Œã‚‹
         }
 
         else if (!cursorLock)
         {
-            Cursor.lockState = CursorLockMode.None;     //None‚É‚·‚éƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ•\¦‚µ‚Ä©—R‚É“®‚©‚¹‚é‚æ‚¤‚É‚È‚é
+            Cursor.lockState = CursorLockMode.None;     //Noneã«ã™ã‚‹ï¼ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã—ã¦è‡ªç”±ã«å‹•ã‹ã›ã‚‹ã‚ˆã†ã«ãªã‚‹
         }
     }
 
-    //Šp“x§ŒÀŠÖ”‚Ìì¬
-    public Quaternion ClampRotation(Quaternion q)       //“n‚³‚ê‚½‰ñ“]‚ğX²iã‰º•ûŒüj‚É§ŒÀ‚·‚éŠÖ”
+    //è§’åº¦åˆ¶é™é–¢æ•°ã®ä½œæˆ
+    public Quaternion ClampRotation(Quaternion q)       //æ¸¡ã•ã‚ŒãŸå›è»¢ã‚’Xè»¸ï¼ˆä¸Šä¸‹æ–¹å‘ï¼‰ã«åˆ¶é™ã™ã‚‹é–¢æ•°
     {
-        //q = x,y,z,w (x,y,z‚ÍƒxƒNƒgƒ‹i—Ê‚ÆŒü‚«jFw‚ÍƒXƒJƒ‰[iÀ•W‚Æ‚Í–³ŠÖŒW‚Ì—Êj)
+        //q = x,y,z,w (x,y,zã¯ãƒ™ã‚¯ãƒˆãƒ«ï¼ˆé‡ã¨å‘ãï¼‰ï¼šwã¯ã‚¹ã‚«ãƒ©ãƒ¼ï¼ˆåº§æ¨™ã¨ã¯ç„¡é–¢ä¿‚ã®é‡ï¼‰)
 
-        q.x /= q.w;                                     //ƒNƒ‰ƒ“ƒv‚Æ‚ÍŠÈ’P‚É§ŒÀ‚·‚é‚±‚Æ‚ª‚Å‚«‚é•Ö—˜‹@”\
+        q.x /= q.w;                                     //ã‚¯ãƒ©ãƒ³ãƒ—ã¨ã¯ç°¡å˜ã«åˆ¶é™ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ä¾¿åˆ©æ©Ÿèƒ½
         q.y /= q.w;
         q.z /= q.w;
         q.w = 1f;
 
-        float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;   //‰ñ“]‚ÌX²‚ÌŠp“x‚ğƒ‰ƒWƒAƒ“¨“x‚É•ÏŠ·    
-                                                               //ƒA[ƒNƒ^ƒ“ƒWƒFƒ“ƒg‚ÅŠp“xiƒ‰ƒWƒAƒ“j‚ğ‹‚ß‚éB
-                                                               //tan(ƒÆ) = x ‚Ì‚Æ‚«AƒÆ = atan(x) ‚É‚È‚é
-                                                               //‚Â‚Ü‚èAu‚±‚Ì’l‚Í‚Ç‚ÌŠp“x‚Ìƒ^ƒ“ƒWƒFƒ“ƒg‚©Hv‚ğ‹‚ß‚é
+        float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;   //å›è»¢ã®Xè»¸ã®è§’åº¦ã‚’ãƒ©ã‚¸ã‚¢ãƒ³â†’åº¦ã«å¤‰æ›    
+                                                               //ã‚¢ãƒ¼ã‚¯ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆã§è§’åº¦ï¼ˆãƒ©ã‚¸ã‚¢ãƒ³ï¼‰ã‚’æ±‚ã‚ã‚‹ã€‚
+                                                               //tan(Î¸) = x ã®ã¨ãã€Î¸ = atan(x) ã«ãªã‚‹
+                                                               //ã¤ã¾ã‚Šã€ã€Œã“ã®å€¤ã¯ã©ã®è§’åº¦ã®ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆã‹ï¼Ÿã€ã‚’æ±‚ã‚ã‚‹
         angleX = Mathf.Clamp(angleX,minX,maxX);
-        //"Mathf.Clamp"‚Æ‚ÍAangleX‚ğ(min,max) = (minX,minX)‚Æ‚·‚éˆ—
+        //"Mathf.Clamp"ã¨ã¯ã€angleXã‚’(min,max) = (minX,minX)ã¨ã™ã‚‹å‡¦ç†
 
-        q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);        //Mathf.Deg2Rad      “x‚©‚çƒ‰ƒWƒAƒ“•ÏŠ·
+        q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);        //Mathf.Deg2Rad      åº¦ã‹ã‚‰ãƒ©ã‚¸ã‚¢ãƒ³å¤‰æ›
 
-        return q;       //X²‚¾‚¯§ŒÀ‚³‚ê‚½V‚µ‚¢ƒNƒH[ƒ^ƒjƒIƒ“‚ğ•Ô‚·B
+        return q;       //Xè»¸ã ã‘åˆ¶é™ã•ã‚ŒãŸæ–°ã—ã„ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’è¿”ã™ã€‚
     }
 }
     

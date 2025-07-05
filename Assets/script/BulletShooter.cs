@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class BulletShooter : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;     // ’e‚ÌƒvƒŒƒnƒu
-    [SerializeField] private Transform firePoint;         // ’e‚Ì”­ËˆÊ’uieŒû‚È‚Çj
+    [SerializeField] private GameObject bulletPrefab;     // å¼¾ã®ãƒ—ãƒ¬ãƒãƒ–
+    [SerializeField] private Transform firePoint;         // å¼¾ã®ç™ºå°„ä½ç½®ï¼ˆéŠƒå£ãªã©ï¼‰
 
     void Update()
     {
@@ -15,7 +15,7 @@ public class BulletShooter : MonoBehaviour
 
     void Fire()
     {
-        // ‰æ–Ê’†‰›‚©‚çRay‚ğ”ò‚Î‚·
+        // ç”»é¢ä¸­å¤®ã‹ã‚‰Rayã‚’é£›ã°ã™
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
         Vector3 targetPoint;
 
@@ -28,7 +28,7 @@ public class BulletShooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * 100f;
         }
 
-        // ’e‚ğ¶¬‚µ‚Ä”­Ë•ûŒü‚ğİ’è
+        // å¼¾ã‚’ç”Ÿæˆã—ã¦ç™ºå°„æ–¹å‘ã‚’è¨­å®š
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<Bullet>().Init(firePoint.position, targetPoint);
     }

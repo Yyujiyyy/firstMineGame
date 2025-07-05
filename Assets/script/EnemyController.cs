@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,13 +9,13 @@ public class EnemyController : MonoBehaviour
 
     public void EnemyGenerate()
     {
-        int xEnemyPos = Random.Range(-20, 21);  //-20ˆÈã21–¢–
-        //•Ï”"Xenemypos"‚Ì’l‚ğRandomƒNƒ‰ƒX‚ÌARangeƒƒ\ƒbƒh‚ğg‚Á‚Äƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ‚ß‚Ä‚¢‚é
+        int xEnemyPos = Random.Range(-20, 21);  //-20ä»¥ä¸Š21æœªæº€
+        //å¤‰æ•°"Xenemypos"ã®å€¤ã‚’Randomã‚¯ãƒ©ã‚¹ã®ã€Rangeãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºã‚ã¦ã„ã‚‹
 
-        int zPnemyPos = Random.Range(1, 21);    //1ˆÈã21–¢–
-        //•Ï”"Yenemypos"‚Ì’l‚ğRandomƒNƒ‰ƒX‚ÌARangeƒƒ\ƒbƒh‚ğg‚Á‚Äƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ‚ß‚Ä‚¢‚é
+        int zPnemyPos = Random.Range(1, 21);    //1ä»¥ä¸Š21æœªæº€
+        //å¤‰æ•°"Yenemypos"ã®å€¤ã‚’Randomã‚¯ãƒ©ã‚¹ã®ã€Rangeãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºã‚ã¦ã„ã‚‹
 
         transform.position = new Vector3(xEnemyPos, 1, zPnemyPos);
-        //“G‚ğƒ‰ƒ“ƒ_ƒ€‚ÈêŠ‚Éˆê‰ñ”z’u
+        //æ•µã‚’ãƒ©ãƒ³ãƒ€ãƒ ãªå ´æ‰€ã«ä¸€å›é…ç½®
     }
 }
