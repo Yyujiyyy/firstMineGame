@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private EnemyController _random;
     public ParticleSystem particle;   // Hierarchy上のParticleSystemを指定
     [SerializeField] public Transform enemy;
+    [SerializeField] private RandomEnemy _randomEnemy;
     Transform _tr;
 
     // UI関連（Inspectorで設定）
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
             {
                 if (hitInfo.collider.CompareTag("enemy"))
                 {
-                    Debug.Log("RayHit : Enemy");
+                    //Debug.Log("RayHit : Enemy");
                     //particle.transform.position = hitInfo.point;       //particleの位置を当たった位置にする（ワープ先についてこない）
                     //instantiateするから必要ない↑
                     Instantiate(particle, hitInfo.point, Quaternion.identity);
@@ -76,6 +77,19 @@ public class Player : MonoBehaviour
 
                         target.ShowUI();               // 今のターゲットのUIを表示
                         currentRayTarget = target;     // 記録更新
+                    }
+                }
+
+                // ================================
+                // レイが "RandomEnemy" に当たった場合 RandomEnemyGenerate();
+                // ================================
+                if (hitInfo.collider.CompareTag("RandomEnemy"))
+                {
+                    Instantiate(particle, hitInfo.point, Quaternion.identity);
+
+                    if (_random != null)                    //nullチェック      解説
+                    {
+                        _randomEnemy.EnemyGenerate();            //_random に入っているオブジェクトに対して EnemyGenerate() を呼び出す
                     }
                 }
             }

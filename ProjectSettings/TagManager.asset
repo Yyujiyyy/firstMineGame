@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - UIButton
   - CheckBox
+  - RandomEnemy
   layers:
   - Default
   - TransparentFX
