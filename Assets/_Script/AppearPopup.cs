@@ -15,7 +15,9 @@ public class AppearPopup : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            settingPopup.SetActive(true);
+            settingPopup.SetActive(!settingPopup.activeSelf);  // true → false / false → true
+            //settingPopup.activeSelf は、現在アクティブかどうか（表示中かどうか）を返す。
+            //!settingPopup.activeSelf とすることで、現在の状態を反転して設定できる（トグル処理）。
         }
     }
 
