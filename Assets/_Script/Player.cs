@@ -69,8 +69,8 @@ public class Player : MonoBehaviour
                     CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
                     if (target != null && target != currentRayTarget)
                     {
-                        //if (currentRayTarget != null)
-                        //    currentRayTarget.HideUI(); // 前のターゲットのUIを非表示
+                        if (currentRayTarget != null)
+                            currentRayTarget.HideUI(); // 前のターゲットのUIを非表示
 
                         target.ToggleUI();               // 今のターゲットのUIを表示
                         currentRayTarget = target;   // 現在のターゲットとして記録（必要に応じて）
