@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class FirstEnemyController : MonoBehaviour
 {
+    [SerializeField] private GameObject FirstCharacterPrefab;
+    
     void Start()
     {
         transform.position = new Vector3(0, 1, 20);

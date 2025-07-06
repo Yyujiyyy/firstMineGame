@@ -6,6 +6,8 @@ public class CountDown50 : MonoBehaviour
     public float currentCount = 50f;
     public TextMeshProUGUI countdownText;
 
+    [SerializeField] private CountUpTimer countUpTimer; // Å© CountUpTimer ÇéQè∆
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,12 @@ public class CountDown50 : MonoBehaviour
             currentCount -= 1;
             UpdateText();
         }
-    }
+
+        if (currentCount <= 0)
+        {
+            countUpTimer?.StopTimer(); // Å© Ç±Ç±Ç≈é~ÇﬂÇÈ
+        }
+    }   
 
     private void UpdateText()
     {

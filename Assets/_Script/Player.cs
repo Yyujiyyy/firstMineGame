@@ -6,7 +6,7 @@ using UnityEditor.PackageManager;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private EnemyController _random;
+    [SerializeField] private FirstEnemyController _random;
     public ParticleSystem particle;   // Hierarchy上のParticleSystemを指定
     [SerializeField] public Transform enemy;
     [SerializeField] private RandomEnemy _randomEnemy;
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("enemy").transform;
 
-        _random = GameObject.FindObjectOfType<EnemyController>();
+        _random = GameObject.FindObjectOfType<FirstEnemyController>();
         //これでシーン内の最初に見つかった EnemyController を _random にセットできる。
 
         _tr = transform;
@@ -69,12 +69,14 @@ public class Player : MonoBehaviour
                     CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
                     if (target != null && target != currentRayTarget)
                     {
-                        if (currentRayTarget != null)
-                            currentRayTarget.HideUI(); // 前のターゲットのUIを非表示
+                        //if (currentRayTarget != null)
+                        //    currentRayTarget.HideUI(); // 前のターゲットのUIを非表示
 
-                        target.ShowUI();               // 今のターゲットのUIを表示
-                        currentRayTarget = target;     // 記録更新
+                        target.ToggleUI();               // 今のターゲットのUIを表示
+                        currentRayTarget = target;   // 現在のターゲットとして記録（必要に応じて）
                     }
+
+                    
                 }
 
                 // ================================

@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 421960413}
   - component: {fileID: 421960417}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: FirstEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e8709586f88a14aaff296ffdd75d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstCharacterPrefab: {fileID: 0}
 --- !u!1 &430481088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,6 +1967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCount: 50
   countdownText: {fileID: 722440758}
+  countUpTimer: {fileID: 1340920961}
 --- !u!1 &743707431
 GameObject:
   m_ObjectHideFlags: 0
