@@ -47,6 +47,10 @@ public class PressAnyButton : MonoBehaviour
 
     private void OnAnyButtonPressed(InputAction.CallbackContext context)
     {
+        // Escape キーだったら無視する
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            return;
+
         if (!isPointerOverUI)
         {
             SceneManager.LoadScene(sceneName);

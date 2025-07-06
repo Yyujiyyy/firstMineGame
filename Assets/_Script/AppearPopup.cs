@@ -13,7 +13,10 @@ public class AppearPopup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            settingPopup.SetActive(true);
+        }
     }
 
     public void AppearSettingPopup()        //void AppearSettingPopupではOnclickでアクセスできない！
