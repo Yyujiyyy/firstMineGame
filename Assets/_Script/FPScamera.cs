@@ -13,6 +13,8 @@ public class FPScamera : MonoBehaviour
 
     [SerializeField] public GameObject Popup;
 
+    //Jump関連
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,9 @@ public class FPScamera : MonoBehaviour
         {
             Sensitivity = PlayerPrefs.GetFloat("Sensitivity");      //Sensitivity変数を共通の数値にする
         }
+
+        //Jump関連
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -63,14 +68,11 @@ public class FPScamera : MonoBehaviour
     {
         if (Popup.activeSelf)
         {
-            return;                                            // 視点処理を止める（以下のUpdate処理をすべてスキップ）
+            return;                                            // 移動処理を止める（以下のUpdate処理をすべてスキップ）
         }
 
-        x = 0;
-        z = 0;
-
-        x = Input.GetAxisRaw("Horizontal") * speed;     //Horixontalとは前後移動（WS）を表す
-        z = Input.GetAxisRaw("Vertical") * speed;       //Verticalとは左右移動（AD）を表す
+        float moveX = Input.GetAxisRaw("Horizontal") * speed;     //Horixontalとは前後移動（WS）を表す
+        float moveZ = Input.GetAxisRaw("Vertical") * speed;       //Verticalとは左右移動（AD）を表す
         //transform.position += new Vector3(x,0,z);
 
         Vector3 forward = cam.transform.forward; 
@@ -82,8 +84,17 @@ public class FPScamera : MonoBehaviour
         forward.Normalize();        //スカラーを１にして、向きのみの成分にしている
         right.Normalize();          //スカラーを１にして、向きのみの成分にしている
 
-        transform.position += forward * z + right * x;
-                            //向き*移動量 + 向き * 移動量
+        Vector3 moveDir = forward * moveZ + right * moveX;
+        Vector3 targetPos = rb.position + moveDir;
+
+        rb.MovePosition(targetPos); // Rigidbodyで移動！
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 10f, rb.velocity.z);  // 既存のX/Z速度を維持して上方向にジャンプ
+            Debug.Log("isJumping");
+        }
+        
     }
 
     public void UpdateCursorLock()                      //UpdateCursorLockという名前のメソッド
@@ -131,5 +142,3 @@ public class FPScamera : MonoBehaviour
         return q;       //X軸だけ制限された新しいクォータニオンを返す。
     }
 }
-    
-

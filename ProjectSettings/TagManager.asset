@@ -11,6 +11,7 @@ TagManager:
   - RandomEnemy
   - Enemy
   - NeutralEnemy
+  - Ground
   layers:
   - Default
   - TransparentFX
