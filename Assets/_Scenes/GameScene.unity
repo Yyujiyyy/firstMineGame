@@ -909,31 +909,31 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3291860428383551614, guid: 35386b3bbab08ff468e231da680c4e4c,
     type: 3}
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1531742638}
+  - {fileID: 395529523}
+  - {fileID: 1240390029}
+  - {fileID: 1088254705}
+  - {fileID: 1703140192}
+  - {fileID: 1357794961}
+  - {fileID: 653654511}
+  - {fileID: 1330464466}
+  - {fileID: 312799126}
+  - {fileID: 656031471}
+  - {fileID: 707292978}
+  - {fileID: 2031564771}
+  - {fileID: 1156816316}
+  - {fileID: 2026585035}
+  - {fileID: 476594866}
+  - {fileID: 1031805757}
+  - {fileID: 1211012438}
+  - {fileID: 258831708}
+  - {fileID: 57956283}
+  - {fileID: 666520609}
+  - {fileID: 86529415}
+  - {fileID: 1806493481}
+  - {fileID: 298231177}
+  - {fileID: 1241344443}
+  - {fileID: 1531360671}
   enemyCount: 10
 --- !u!1 &258831707
 GameObject:
