@@ -11,6 +11,9 @@ public class FPScamera : MonoBehaviour
     bool cursorLock = true;         
     float minX = -90, maxX = 90f;
 
+    [SerializeField] public GameObject Popup;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,11 @@ public class FPScamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Popup.activeSelf)
+        {
+            return;                                            // 視点処理を止める（以下のUpdate処理をすべてスキップ）
+        }
+
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
             Sensitivity = PlayerPrefs.GetFloat("Sensitivity"); // 毎フレーム取得
