@@ -61,6 +61,11 @@ public class FPScamera : MonoBehaviour
     //毎フレームではなく、”物理演算の更新タイミング”で呼ばれる関数
     //このスクリプトで FixedUpdate() を使う理由は、「物理ベースの動き（Rigidbodyなしでも）」を安定して実行するため
     {
+        if (Popup.activeSelf)
+        {
+            return;                                            // 視点処理を止める（以下のUpdate処理をすべてスキップ）
+        }
+
         x = 0;
         z = 0;
 
@@ -83,7 +88,7 @@ public class FPScamera : MonoBehaviour
 
     public void UpdateCursorLock()                      //UpdateCursorLockという名前のメソッド
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             cursorLock = false;                         //cursorLockとはただのbool型の変数
         }

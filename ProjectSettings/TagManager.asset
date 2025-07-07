@@ -9,6 +9,8 @@ TagManager:
   - UIButton
   - CheckBox
   - RandomEnemy
+  - Enemy
+  - NeutralEnemy
   layers:
   - Default
   - TransparentFX
