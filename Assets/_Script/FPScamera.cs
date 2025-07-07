@@ -31,6 +31,7 @@ public class FPScamera : MonoBehaviour
     {
         if(Popup.activeSelf)
         {
+            Cursor.lockState = CursorLockMode.None;
             return;                                            // 視点処理を止める（以下のUpdate処理をすべてスキップ）
         }
 
@@ -91,7 +92,6 @@ public class FPScamera : MonoBehaviour
         {
             cursorLock= true;
         }
-
 
         if (cursorLock)
         {

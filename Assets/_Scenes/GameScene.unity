@@ -611,6 +611,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8352087769052855435, guid: 343b1e66f23d9294da2d532a6a042026,
     type: 3}
   firePoint: {fileID: 1575874462}
+  Popup: {fileID: 1914606310}
 --- !u!1 &214508809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4225,7 +4226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2014214274
 MonoBehaviour:
   m_ObjectHideFlags: 0

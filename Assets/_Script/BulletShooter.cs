@@ -4,9 +4,15 @@ public class BulletShooter : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;     // 弾のプレハブ
     [SerializeField] private Transform firePoint;         // 弾の発射位置（銃口など）
+    [SerializeField] private GameObject Popup;
 
     void Update()
     {
+        if(Popup.activeSelf)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
