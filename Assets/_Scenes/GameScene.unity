@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 73000782}
   - component: {fileID: 73000781}
   - component: {fileID: 73000780}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -636,6 +636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1552334835}
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -676,6 +677,11 @@ MonoBehaviour:
   cam: {fileID: 330585543}
   Sensitivity: 0.5
   Popup: {fileID: 1914606310}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheck: {fileID: 1552334835}
+  groundDistance: 0.3
 --- !u!54 &199513985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2519,7 +2525,7 @@ GameObject:
   - component: {fileID: 848670745}
   - component: {fileID: 848670744}
   - component: {fileID: 848670743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2874,7 +2880,7 @@ GameObject:
   - component: {fileID: 988214395}
   - component: {fileID: 988214394}
   - component: {fileID: 988214393}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4102,6 +4108,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1385557395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1552334834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552334835}
+  m_Layer: 0
+  m_Name: PlayerGroundPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1552334835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552334834}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 199513982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563549086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4368,7 +4405,7 @@ GameObject:
   - component: {fileID: 1688324769}
   - component: {fileID: 1688324768}
   - component: {fileID: 1688324767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
