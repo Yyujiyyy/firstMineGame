@@ -29,6 +29,12 @@ public class FPScamera : MonoBehaviour
 
         //Jump関連
         rb = GetComponent<Rigidbody>();
+
+        //視点関連
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+
     }
 
     // Update is called once per frame
