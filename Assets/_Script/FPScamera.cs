@@ -16,6 +16,11 @@ public class FPScamera : MonoBehaviour
     //Jump関連
     Rigidbody rb;
 
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.3f;
+    private bool isGrounded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,10 +100,11 @@ public class FPScamera : MonoBehaviour
 
         rb.MovePosition(targetPos); // Rigidbodyで移動！
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, 10f, rb.velocity.z);  // 既存のX/Z速度を維持して上方向にジャンプ
-            Debug.Log("isJumping");
         }
         
     }
