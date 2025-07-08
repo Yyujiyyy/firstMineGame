@@ -77,6 +77,8 @@ public class FPScamera : MonoBehaviour
     //毎フレームではなく、”物理演算の更新タイミング”で呼ばれる関数
     //このスクリプトで FixedUpdate() を使う理由は、「物理ベースの動き（Rigidbodyなしでも）」を安定して実行するため
     {
+
+
         if (Popup.activeSelf)
         {
             return;                                            // 移動処理を止める（以下のUpdate処理をすべてスキップ）
@@ -96,7 +98,7 @@ public class FPScamera : MonoBehaviour
         right.Normalize();          //スカラーを１にして、向きのみの成分にしている
 
         Vector3 moveDir = forward * moveZ + right * moveX;
-        Vector3 targetPos = rb.position + moveDir;
+        Vector3 targetPos = rb.position + moveDir * Time.fixedDeltaTime;        //Time.deltatimeを使うことでFPSによる格差をなくす
 
         rb.MovePosition(targetPos); // Rigidbodyで移動！
 
