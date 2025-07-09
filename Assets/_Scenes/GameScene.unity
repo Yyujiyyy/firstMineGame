@@ -944,6 +944,7 @@ MonoBehaviour:
   - {fileID: 1241344443}
   - {fileID: 1531360671}
   enemyCount: 10
+  checkBox: {fileID: 1510936452}
 --- !u!1 &258831707
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,7 +4075,6 @@ MonoBehaviour:
   - {fileID: 577023615}
   - {fileID: 421960412}
   - {fileID: 100030, guid: 59945dece27e7614b9aae48d188769ce, type: 3}
-  - {fileID: 0}
 --- !u!65 &1510936453
 BoxCollider:
   m_ObjectHideFlags: 0

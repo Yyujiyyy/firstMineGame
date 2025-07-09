@@ -19,8 +19,6 @@ public class Bullet : MonoBehaviour
         if (mesh != null) mesh.enabled = false;
     }
 
-
-
     void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
