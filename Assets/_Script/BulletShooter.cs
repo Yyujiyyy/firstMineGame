@@ -5,6 +5,8 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;     // 弾のプレハブ
     [SerializeField] private Transform firePoint;         // 弾の発射位置（銃口など）
     [SerializeField] private GameObject Popup;
+    [SerializeField] private GameObject MuzzleFlashPrefab;
+    [SerializeField] private GameObject GunMuzzle;
 
     void Update()
     {
@@ -15,7 +17,9 @@ public class BulletShooter : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            GameObject flash = Instantiate(MuzzleFlashPrefab, GunMuzzle.transform.position, Quaternion.identity);
             Fire();
+            Destroy(flash, 0.2f);
         }
     }
 

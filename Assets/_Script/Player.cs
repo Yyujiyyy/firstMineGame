@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GameObject.FindWithTag("enemy").transform;
+        //enemy = GameObject.FindWithTag("enemy").transform;
 
         _random = GameObject.FindObjectOfType<FirstEnemyController>();
         //これでシーン内の最初に見つかった EnemyController を _random にセットできる。
