@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class CheckBox : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class CheckBox : MonoBehaviour
     [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
     [SerializeField] private GameObject _Enemy;           // 通常の敵
     [SerializeField] private GameObject _R_enemy;         // 変化後の敵
-    [SerializeField] private GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
+    public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
 
     private bool isActive = false;   // UIが現在表示されているかどうかのフラグ
 
@@ -70,5 +71,14 @@ public class CheckBox : MonoBehaviour
 
         // 表示状態をリセット
         isActive = false;
+    }
+
+    // 実行時に要素を追加するメソッド
+    public void AddToHideObj(GameObject obj)
+    {
+        // List に変換して追加してから配列に戻す
+        List<GameObject> tempList = new List<GameObject>(_HideObj);
+        tempList.Add(obj);
+        _HideObj = tempList.ToArray();
     }
 }

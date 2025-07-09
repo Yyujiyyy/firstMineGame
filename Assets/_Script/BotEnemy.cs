@@ -11,20 +11,26 @@ public class BotEnemy : MonoBehaviour
     private List<Transform> usedPoints = new List<Transform>();
     private List<GameObject> enemyPool = new List<GameObject>();
 
+    //CheckBox関連
+    //[SerializeField] private GameObject enemyPrefab;
+    //[SerializeField] private Transform spawnPoint;
+    [SerializeField] private CheckBox checkBox;  // CheckBox スクリプトを参照
+
     void Start()
     {
         availablePoints = new List<Transform>(spawnPoints);
 
-        // 敵プールを作成
         for (int i = 0; i < enemyCount; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.SetActive(false);
             enemy.GetComponent<BotUnit>().Init(this);
             enemyPool.Add(enemy);
+
+            // CheckBoxに追加（必要な場合）
+            checkBox.AddToHideObj(enemy);
         }
 
-        // 初回スポーン
         int spawnCount = Mathf.Min(enemyCount, availablePoints.Count);
         for (int i = 0; i < spawnCount; i++)
         {
@@ -57,6 +63,6 @@ public class BotEnemy : MonoBehaviour
         usedPoints.Remove(spawnPoint);
         availablePoints.Add(spawnPoint);
 
-        Invoke(nameof(SpawnEnemy), 0.5f);  // 2秒後に再出現（任意）
+        Invoke(nameof(SpawnEnemy), 0.5f);  // 0.5秒後に再出現（任意）
     }
 }
