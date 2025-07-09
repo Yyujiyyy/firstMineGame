@@ -52,12 +52,14 @@ public class Player : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
             {
-                if (hitInfo.collider.CompareTag("enemy"))
+                if (hitInfo.collider.CompareTag("BotEnemy"))
                 {
-                    //Debug.Log("RayHit : Enemy");
-                    //particle.transform.position = hitInfo.point;       //particleの位置を当たった位置にする（ワープ先についてこない）
-                    //instantiateするから必要ない↑
-                    
+                    BotUnit unit = hitInfo.collider.GetComponent<BotUnit>();
+                    if (unit != null)
+                    {
+                        unit.Die();  // 手動で倒す（例：クリックで敵を消す）
+                    }
+
                 }
 
                 // ================================
@@ -75,8 +77,6 @@ public class Player : MonoBehaviour
                         target.ToggleUI();               // 今のターゲットのUIを表示
                         currentRayTarget = target;   // 現在のターゲットとして記録（必要に応じて）
                     }
-
-                    
                 }
 
                 // ================================

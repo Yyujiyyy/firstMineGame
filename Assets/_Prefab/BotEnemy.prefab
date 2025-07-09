@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4221397756931402168}
   - component: {fileID: 3601679699942024967}
   - component: {fileID: 6094556745092685586}
+  - component: {fileID: -4257512345480439011}
   m_Layer: 0
-  m_Name: NeutralEnemy
-  m_TagString: Untagged
+  m_Name: BotEnemy
+  m_TagString: BotEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,3 +108,15 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4257512345480439011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291860428383551614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d73ec9a86cf09a4b9773478b469dbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - NeutralEnemy
   - Ground
+  - BotEnemy
   layers:
   - Default
   - TransparentFX
