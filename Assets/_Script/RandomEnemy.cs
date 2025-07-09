@@ -17,5 +17,6 @@ public class RandomEnemy : MonoBehaviour
 
         transform.position = new Vector3(xEnemyPos, 1, zPnemyPos);
         //敵をランダムな場所に一回配置
+        Debug.Log("warp");
     }
 }

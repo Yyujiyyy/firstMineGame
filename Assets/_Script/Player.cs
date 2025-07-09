@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor.PackageManager;
-//using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private FirstEnemyController _random;
     public ParticleSystem particle;   // Hierarchy上のParticleSystemを指定
     [SerializeField] public Transform enemy;
     [SerializeField] private RandomEnemy _randomEnemy;
@@ -24,10 +21,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //enemy = GameObject.FindWithTag("enemy").transform;
-
-        _random = GameObject.FindObjectOfType<FirstEnemyController>();
-        //これでシーン内の最初に見つかった EnemyController を _random にセットできる。
 
         _tr = transform;
 
@@ -80,7 +73,7 @@ public class Player : MonoBehaviour
                 }
 
                 // ================================
-                // レイが "RandomEnemy" に当たった場合 RandomEnemyGenerate();
+                // レイが "RandomEnemy" に当たった場合 Generate();
                 // ================================
                 if (hitInfo.collider.CompareTag("RandomEnemy"))
                 {
@@ -104,7 +97,7 @@ public class Player : MonoBehaviour
     {
         Instantiate(particle, hitInfo.point, Quaternion.identity);
 
-        if (_random != null)                    //nullチェック      解説
+        if (_randomEnemy != null)                    //nullチェック      解説
         {
             _randomEnemy.EnemyGenerate();            //_random に入っているオブジェクトに対して EnemyGenerate() を呼び出す
             _countdown.DocumentCount();         //カウントダウン実行
