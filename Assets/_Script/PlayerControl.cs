@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FPScamera : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     float x, z;
     public float speed = 0.1f;
@@ -102,13 +102,14 @@ public class FPScamera : MonoBehaviour
 
         rb.MovePosition(targetPos); // Rigidbodyで移動！
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
+        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 10f, rb.velocity.z);  // 既存のX/Z速度を維持して上方向にジャンプ
+            rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);  // 既存のX/Z速度を維持して上方向にジャンプ?
+            //一瞬の衝撃力を加える
         }
-        
+
     }
 
     public void UpdateCursorLock()                      //UpdateCursorLockという名前のメソッド

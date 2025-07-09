@@ -7,7 +7,7 @@ public class SensitivitySlider : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Slider sensitivitySlider; // スライダー参照
     [SerializeField] private TMP_InputField inputFieldSensitivity; // ← 追加：数値入力欄
 
-    public FPScamera cameraScript; // FPSカメラスクリプト参照
+    public PlayerControl cameraScript; // FPSカメラスクリプト参照
 
     // Start is called before the first frame update
     void Start()
