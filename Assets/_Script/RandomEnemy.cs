@@ -2,6 +2,7 @@
 
 public class RandomEnemy : MonoBehaviour
 {
+    // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(0, 1, 20);
@@ -17,6 +18,5 @@ public class RandomEnemy : MonoBehaviour
 
         transform.position = new Vector3(xEnemyPos, 1, zPnemyPos);
         //敵をランダムな場所に一回配置
-        Debug.Log("warp");
     }
 }
