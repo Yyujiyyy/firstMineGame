@@ -17,7 +17,7 @@ public class BulletShooter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject flash = Instantiate(MuzzleFlashPrefab, firePoint.position, Quaternion.identity);
-            flash.transform.SetParent(firePoint);  // 追従させる
+            flash.transform.SetParent(firePoint);           // 銃口を追従させる
             Fire();
             Destroy(flash, 0.2f);
         }

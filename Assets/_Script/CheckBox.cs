@@ -96,9 +96,4 @@ public class CheckBox : MonoBehaviour
         tempList.Add(obj);
         _HideObj = tempList.ToArray();
     }
-
-    private void Update()
-    {
-        
-    }
 }

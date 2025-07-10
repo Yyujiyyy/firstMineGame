@@ -5,7 +5,7 @@ public class RandomEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 1, 20);
+        transform.position = new Vector3(0, 1f, 20);
     }
 
     public void EnemyGenerate()
@@ -16,7 +16,7 @@ public class RandomEnemy : MonoBehaviour
         int zPnemyPos = Random.Range(1, 21);    //1以上21未満
         //変数"Yenemypos"の値をRandomクラスの、Rangeメソッドを使ってランダムに決めている
 
-        transform.position = new Vector3(xEnemyPos, 1, zPnemyPos);
+        transform.position = new Vector3(xEnemyPos, 1f, zPnemyPos);
         //敵をランダムな場所に一回配置
     }
 }

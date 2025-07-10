@@ -100,9 +100,6 @@ public class Player : MonoBehaviour
                 //}
             }
         } 
-
-        //Particleの追跡
-
     }
 
     public void Generate(RaycastHit hitInfo)

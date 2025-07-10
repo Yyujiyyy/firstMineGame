@@ -3,28 +3,20 @@
 public class BotUnit : MonoBehaviour
 {
     private BotEnemy manager;
-    private Transform mySpawnPoint;
+    private Vector3 spawnPos;
 
     public void Init(BotEnemy mgr)
     {
         manager = mgr;
     }
 
-    public void SetSpawnPoint(Transform point)
+    public void SetSpawnPointPosition(Vector3 pos)
     {
-        mySpawnPoint = point;
+        spawnPos = pos;
     }
 
     public void Die()
     {
-        manager.OnEnemyDeath(this.gameObject, mySpawnPoint);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bullet"))
-        {
-            Die();
-        }
+        manager.OnEnemyDeath(gameObject, spawnPos);
     }
 }
