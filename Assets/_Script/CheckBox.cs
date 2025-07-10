@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 public class CheckBox : MonoBehaviour
 {
+    //Text関連
     [SerializeField] private GameObject TextObject; // ButtonのTextオブジェクトをアサイン
+
+    [SerializeField] private GameObject CountUptimerText;
     [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
+
+    [SerializeField] private GameObject CountDowntimer;
+
     //[SerializeField] private GameObject _Enemy;           // 通常の敵
     [SerializeField] private GameObject _R_enemy;         // 変化後の敵
     public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
@@ -15,7 +21,9 @@ public class CheckBox : MonoBehaviour
     private void Start()
     {
         // 最初は非表示にしておく
-        TextObject.SetActive(false);
+        TextObject?.SetActive(false);
+        CountDowntimer.SetActive(false);
+        CountUptimerText.SetActive(false);
         isActive = false;
     }
 
@@ -38,6 +46,8 @@ public class CheckBox : MonoBehaviour
     {
         // UIを表示
         TextObject.SetActive(true);
+        CountDowntimer.SetActive(true);
+        CountUptimerText.SetActive(true);
 
         // タイマーを開始
         countUpTimer?.StartTimer();
@@ -59,7 +69,10 @@ public class CheckBox : MonoBehaviour
     public void HideUI()
     {
         // UIを非表示
-        TextObject?.SetActive(false);
+        TextObject.SetActive(false);
+        CountDowntimer.SetActive(false);
+        CountUptimerText.SetActive(false);
+        countUpTimer?.StopTimer();
 
         // _HideObj を再表示
         foreach (GameObject obj in _HideObj)
