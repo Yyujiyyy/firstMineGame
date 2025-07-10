@@ -717,17 +717,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 199513978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504899ad49b545841906a6200aef6037, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a7572c9b44fa9e4bbbdf2e372963d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8352087769052855435, guid: 343b1e66f23d9294da2d532a6a042026,
     type: 3}
   firePoint: {fileID: 1575874462}
   Popup: {fileID: 1914606310}
-  MuzzleFlashPrefab: {fileID: 7205018430867789839, guid: d0b096144149f6c4d876481ddd300ad5,
+  MuzzleFlashPrefab: {fileID: 4321390100199336718, guid: d0b096144149f6c4d876481ddd300ad5,
     type: 3}
-  GunMuzzle: {fileID: 1575874461}
-  muzzletimer: 3
 --- !u!1 &214508809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4648,7 +4646,7 @@ Transform:
   m_GameObject: {fileID: 1575874461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.61, y: 0.01486017, z: -0}
+  m_LocalPosition: {x: -0.61, y: 0.01486017, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5556,7 +5554,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u25CB"
+  m_text: o
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

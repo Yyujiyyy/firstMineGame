@@ -6,7 +6,7 @@ public class CheckBox : MonoBehaviour
 {
     [SerializeField] private GameObject TextObject; // ButtonのTextオブジェクトをアサイン
     [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
-    [SerializeField] private GameObject _Enemy;           // 通常の敵
+    //[SerializeField] private GameObject _Enemy;           // 通常の敵
     [SerializeField] private GameObject _R_enemy;         // 変化後の敵
     public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
 
@@ -22,9 +22,11 @@ public class CheckBox : MonoBehaviour
     // UI表示/非表示を切り替えるトグルメソッド（外部から呼び出す）
     public void ToggleUI()
     {
+        Debug.Log("ToggleUI called");
         if (isActive)
         {
             HideUI();   // 表示中だったら非表示に
+            Debug.Log("hide");
         }
         else
         {
@@ -47,7 +49,7 @@ public class CheckBox : MonoBehaviour
         }
 
         // 通常の敵を非表示にし、変化後の敵を表示
-        _Enemy.SetActive(false);
+        //_Enemy.SetActive(false);
         _R_enemy.SetActive(true);
 
         // 表示状態を記録
@@ -66,7 +68,7 @@ public class CheckBox : MonoBehaviour
         }
 
         // 敵表示を元に戻す
-        _Enemy.SetActive(true);
+        //_Enemy.SetActive(true);
         _R_enemy.SetActive(false);
 
         // 表示状態をリセット
