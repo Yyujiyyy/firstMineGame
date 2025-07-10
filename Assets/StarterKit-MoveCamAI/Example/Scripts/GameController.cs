@@ -126,18 +126,18 @@ namespace StarterKitMCA {
 				if(Input.GetKeyDown(KeyCode.L))
 				{
 					fpsCursor = cursorShow;
-					Screen.lockCursor = true;
+					//Screen.lockCursor = true;
 				}
 				if(Input.GetKeyDown(KeyCode.Escape))
 				{
 					fpsCursor = cursorHide;
-					Screen.lockCursor = false;
+					//Screen.lockCursor = false;
 	            }
 	        }
 	        else
 	        {
 	            fpsCursor = cursorHide;
-	            Screen.lockCursor = false;
+	            //Screen.lockCursor = false;
 	        }
 	    }
 		

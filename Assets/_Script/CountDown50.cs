@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class CountDown50 : MonoBehaviour
@@ -6,7 +6,7 @@ public class CountDown50 : MonoBehaviour
     public float currentCount = 50f;
     public TextMeshProUGUI countdownText;
 
-    [SerializeField] private CountUpTimer countUpTimer; // �� CountUpTimer ���Q��
+    [SerializeField] private CountUpTimer countUpTimer; // ← CountUpTimer を参照
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class CountDown50 : MonoBehaviour
 
         if (currentCount <= 0)
         {
-            countUpTimer?.StopTimer(); // �� �����Ŏ~�߂�
+            countUpTimer?.StopTimer(); // ← ここで止める
         }
     }   
 
@@ -33,5 +33,12 @@ public class CountDown50 : MonoBehaviour
     {
         if (countdownText != null)
             countdownText.text = Mathf.Ceil(currentCount).ToString();
+    }
+
+    // SetActive(true) のたびに呼ばれる
+    void OnEnable()
+    {
+        currentCount = 50f;     // ← カウントリセット
+        UpdateText();           // ← 表示更新
     }
 }
