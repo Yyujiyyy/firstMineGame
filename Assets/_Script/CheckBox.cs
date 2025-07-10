@@ -30,11 +30,11 @@ public class CheckBox : MonoBehaviour
     // UI表示/非表示を切り替えるトグルメソッド（外部から呼び出す）
     public void ToggleUI()
     {
-        Debug.Log("ToggleUI called");
+        //Debug.Log("ToggleUI called");
         if (isActive)
         {
             HideUI();   // 表示中だったら非表示に
-            Debug.Log("hide");
+            //Debug.Log("hide");
         }
         else
         {
@@ -95,5 +95,10 @@ public class CheckBox : MonoBehaviour
         List<GameObject> tempList = new List<GameObject>(_HideObj);
         tempList.Add(obj);
         _HideObj = tempList.ToArray();
+    }
+
+    private void Update()
+    {
+        
     }
 }
