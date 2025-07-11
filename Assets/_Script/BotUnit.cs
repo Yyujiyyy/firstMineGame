@@ -15,8 +15,21 @@ public class BotUnit : MonoBehaviour
         spawnPos = pos;
     }
 
-    public void Die()
+    // ✅ 追加：外部から呼ばれるダメージ処理
+    public void TakeDamage(bool isHeadshot)
     {
+        // ダメージやHP管理の処理などここに追加可能
+        Die(isHeadshot);
+    }
+
+    public void Die(bool isHeadshot = false)
+    {
+        // エフェクトやサウンドの分岐もここで可能
+        if (isHeadshot)
+        {
+            Debug.Log("ヘッドショット！");
+        }
+
         manager.OnEnemyDeath(gameObject, spawnPos);
     }
 }

@@ -4,68 +4,68 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    public ParticleSystem particle;   // Hierarchy上のParticleSystemを指定
+    public ParticleSystem particle;   // パーティクル再生用
     [SerializeField] public Transform enemy;
     [SerializeField] private RandomEnemy _randomEnemy;
-    [SerializeField] private CountDown50 _countdown;     //カウントダウンスクリプトを参照
-    Transform _tr;
+    [SerializeField] private CountDown50 _countdown;
+    private Transform _tr;
 
-    // UI関連（Inspectorで設定）
+    [Header("UI関連")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GraphicRaycaster uiRaycaster;
     [SerializeField] private EventSystem eventSystem;
 
-    // RayでヒットしたUI対象を記録（連続して同じ対象を処理しないようにする）
     private CheckBox currentRayTarget = null;
 
-    // Start is called before the first frame update
     void Start()
     {
-
         _tr = transform;
 
-        // カメラが未設定なら自動で取得
         if (mainCamera == null)
             mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //マウスを左クリックしたとき
         if (Input.GetMouseButtonDown(0))
         {
-            // ================================
-            // 通常の3D空間へのRay判定
-            // ================================
-
-            //新しいRayを作る。
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-            //Rayの発射地点               ,方向
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
             {
-                if (hitInfo.collider.CompareTag("BotEnemy"))
+                GameObject hitObj = hitInfo.collider.gameObject;
+
+                // ======================
+                // ヘッドショット（Head タグ）
+                // ======================
+                if (hitObj.CompareTag("Head"))
                 {
-                    BotUnit unit = hitInfo.collider.GetComponent<BotUnit>();
+                    BotUnit unit = hitObj.GetComponentInParent<BotUnit>();
                     if (unit != null)
                     {
-                        unit.Die();  // 手動で倒す（例：クリックで敵を消す）
+                        unit.TakeDamage(true);  // ヘッドショット
                     }
-
+                }
+                // ======================
+                // 通常ヒット（BotEnemy タグ）
+                // ======================
+                else if (hitObj.CompareTag("BotEnemy"))
+                {
+                    BotUnit unit = hitObj.GetComponent<BotUnit>();
+                    if (unit != null)
+                    {
+                        unit.TakeDamage(false);  // 通常攻撃
+                    }
                 }
 
-                // ================================
-                // レイが "CheckBox" に当たった場合 UI 表示
-                // ================================
-                if (hitInfo.collider.CompareTag("CheckBox"))
+                // ======================
+                // UI表示切り替え（CheckBox タグ）
+                // ======================
+                if (hitObj.CompareTag("CheckBox"))
                 {
-                    //Debug.Log("RayHit : CheckBox");
-                    CheckBox target = hitInfo.collider.GetComponent<CheckBox>();
-
+                    CheckBox target = hitObj.GetComponent<CheckBox>();
                     if (target != null)
                     {
-                        // 前と同じ対象なら Toggle（ON→OFF or OFF→ON）
                         if (target == currentRayTarget)
                         {
                             target.ToggleUI();
@@ -81,35 +81,35 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                // ================================
-                // レイが "RandomEnemy" に当たった場合 Generate();
-                // ================================
-                if (hitInfo.collider.CompareTag("RandomEnemy"))
+                // ======================
+                // 敵生成（RandomEnemy タグ）
+                // ======================
+                if (hitObj.CompareTag("RandomEnemy"))
                 {
                     Generate(hitInfo);
                 }
             }
             else
             {
-                //// Rayが何にも当たらなかった場合、UIを隠す
-                //if (currentRayTarget != null)
-                //{
-                //    currentRayTarget.HideUI();
-                //    currentRayTarget = null;
-                //    Debug.Log("なにもない");
-                //}
+                // 何もヒットしてない → UI を非表示にする（任意）
+                if (currentRayTarget != null)
+                {
+                    currentRayTarget.HideUI();
+                    currentRayTarget = null;
+                    Debug.Log("UI非表示：何もヒットしなかった");
+                }
             }
-        } 
+        }
     }
 
     public void Generate(RaycastHit hitInfo)
     {
         Instantiate(particle, hitInfo.point, Quaternion.identity);
 
-        if (_randomEnemy != null)                    //nullチェック      解説
+        if (_randomEnemy != null)
         {
-            _randomEnemy.EnemyGenerate();            //_random に入っているオブジェクトに対して EnemyGenerate() を呼び出す
-            _countdown.DocumentCount();         //カウントダウン実行
+            _randomEnemy.EnemyGenerate();
+            _countdown.DocumentCount();
         }
-    } 
+    }
 }

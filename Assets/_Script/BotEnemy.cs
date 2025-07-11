@@ -102,4 +102,40 @@ public class BotEnemy : MonoBehaviour
 
         Invoke(nameof(SpawnEnemy), 0.5f);
     }
+
+    //void OnDrawGizmosSelected()
+    //{
+    //    // ギズモ表示色（未使用＝緑、使用中＝赤）
+    //    if (Application.isPlaying)
+    //    {
+    //        // ゲーム中：状態別に色分け
+    //        Gizmos.color = Color.green;
+    //        foreach (Vector3 point in availablePoints)
+    //        {
+    //            Gizmos.DrawSphere(point, 0.3f);
+    //        }
+
+    //        Gizmos.color = Color.red;
+    //        foreach (Vector3 point in usedPoints)
+    //        {
+    //            Gizmos.DrawSphere(point, 0.3f);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // エディタ上（プレイ前）：基準から仮描画
+    //        if (spawnOrigin == null) return;
+
+    //        Vector3 origin = spawnOrigin.position;
+    //        for (float x = -spawnAreaSize.x; x <= spawnAreaSize.x; x += spacing)
+    //        {
+    //            for (float z = -spawnAreaSize.y; z <= spawnAreaSize.y; z += spacing)
+    //            {
+    //                Vector3 pos = origin + new Vector3(x, 0, z);
+    //                Gizmos.color = Color.gray;
+    //                Gizmos.DrawWireSphere(pos, 0.2f);
+    //            }
+    //        }
+    //    }
+    //}
 }
