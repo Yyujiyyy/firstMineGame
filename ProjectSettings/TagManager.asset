@@ -13,6 +13,7 @@ TagManager:
   - NeutralEnemy
   - Ground
   - BotEnemy
+  - Head
   layers:
   - Default
   - TransparentFX
