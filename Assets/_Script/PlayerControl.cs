@@ -52,12 +52,30 @@ public class PlayerControl : MonoBehaviour
     // 毎フレームでの視点移動・カーソルロック処理
     void Update()
     {
+        // ① EscapeキーでPopup開閉
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            bool willShow = !Popup.activeSelf;
+            Popup.SetActive(willShow);
+
+            if (!willShow)
+            {
+                // Popupを閉じた瞬間：カーソルをロック＆非表示にする
+                cursorLock = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+
+        // ② Popupが表示中なら、視点処理やカーソルロックをスキップ
         if (Popup.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
-            return; // Popupがアクティブなとき、操作をスキップ
+            Cursor.visible = true;
+            return;
         }
 
+        // ③ マウスによる視点回転
         float xRot = Input.GetAxisRaw("Mouse X") * Sensitivity;
         float yRot = Input.GetAxisRaw("Mouse Y") * Sensitivity;
         //マウスの移動量　       ×　   感度
@@ -70,6 +88,7 @@ public class PlayerControl : MonoBehaviour
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
+        // ④ カーソルロック処理（マウスクリックなど）
         UpdateCursorLock();
     }
 
@@ -186,5 +205,11 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.LogWarning("DPI入力が数値ではありません");
         }
+    }
+    public void LockCursor()
+    {
+        cursorLock = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
