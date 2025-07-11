@@ -112,22 +112,36 @@ public class PlayerControl : MonoBehaviour
     // エスケープキーとクリックでカーソルロック切り替え
     public void UpdateCursorLock()
     {
+        // Popupが表示中なら、カーソルは常にフリー状態
+        if (Popup.activeSelf)
+        {
+            cursorLock = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return; // ロック処理をスキップ
+        }
+
+        // Escapeキーでロック解除
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             cursorLock = false;
         }
+        // 左クリックでロック再開
         else if (Input.GetMouseButton(0))
         {
             cursorLock = true;
         }
 
+        // 状態に応じて反映
         if (cursorLock)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
