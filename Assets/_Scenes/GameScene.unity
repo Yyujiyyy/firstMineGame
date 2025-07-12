@@ -410,6 +410,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popup: {fileID: 1914606310}
   playerControl: {fileID: 199513984}
+--- !u!1 &190641893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190641894}
+  - component: {fileID: 190641895}
+  m_Layer: 0
+  m_Name: DPISettingScriptBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &190641894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190641893}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 923.45856, y: 342.05078, z: -1184.3783}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1234804297}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &190641895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190641893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac08902ce49c9c4a8d6248a3b4562d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dpiInputField: {fileID: 949300622}
+  valorantSensitivity: 0.4
 --- !u!1001 &192033696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2882,6 +2928,7 @@ Transform:
   m_Children:
   - {fileID: 1148225243}
   - {fileID: 1040968213}
+  - {fileID: 190641894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1340920959
@@ -5156,16 +5203,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 199513984}
+      objectReference: {fileID: 190641895}
     - target: {fileID: 7222572455899799386, guid: e65a8f99060f07946824f4bc07b745dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateDPIFromInput
+      value: ApplySettingsFromInput
       objectReference: {fileID: 0}
     - target: {fileID: 7222572455899799386, guid: e65a8f99060f07946824f4bc07b745dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerControl, Assembly-CSharp
+      value: SettingsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7222572455899799386, guid: e65a8f99060f07946824f4bc07b745dc,
         type: 3}

@@ -31,15 +31,37 @@ public class PlayerControl : MonoBehaviour
     [Header("UI入力")]
     [SerializeField] private TMP_InputField dpiInputField;
 
+    //インスタンス化？
+    public static PlayerControl Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         cameraRot = cam.transform.localRotation;
         characterRot = transform.localRotation;
 
-        // Sensitivity（感度）をDPIとValorant感度から変換して反映
-        Sensitivity = ConvertValorantToUnitySensitivity(valorantSensitivity, mouseDPI);
-        PlayerPrefs.SetFloat("Sensitivity", Sensitivity); // 保存（任意）
+        // Sensitivity（感度）をPlayerPrefsからロード（なければ計算して保存）
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        else
+        {
+            Sensitivity = ConvertValorantToUnitySensitivity(valorantSensitivity, mouseDPI);
+            PlayerPrefs.SetFloat("Sensitivity", Sensitivity);
+        }
 
         // Rigidbodyの参照取得
         rb = GetComponent<Rigidbody>();
