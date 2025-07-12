@@ -65,6 +65,13 @@ public class PlayerControl : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+            else
+            {
+                // Popupを開いた瞬間：カーソルをアンロック＆表示
+                cursorLock = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         // ② Popupが表示中なら、視点処理やカーソルロックをスキップ
@@ -89,7 +96,10 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = characterRot;
 
         // ④ カーソルロック処理（マウスクリックなど）
-        UpdateCursorLock();
+        if (!Popup.activeSelf)
+        {
+            UpdateCursorLock();
+        }
     }
 
     // Rigidbodyを使った移動とジャンプ処理
@@ -140,13 +150,10 @@ public class PlayerControl : MonoBehaviour
             return; // ロック処理をスキップ
         }
 
-        // Escapeキーでロック解除
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            cursorLock = false;
-        }
+        // ※Escapeの処理は削除！
+
         // 左クリックでロック再開
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             cursorLock = true;
         }

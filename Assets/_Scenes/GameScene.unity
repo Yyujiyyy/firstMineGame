@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 1914606310}
+  playerControl: {fileID: 199513984}
 --- !u!1001 &192033696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -623,7 +624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 3528444742757911261, guid: 239012817ffbac1418ae78d08fcbb935,
     type: 3}
-  enemy: {fileID: 0}
   _randomEnemy: {fileID: 577023620}
   _countdown: {fileID: 722440760}
   mainCamera: {fileID: 330585545}

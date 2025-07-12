@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     public ParticleSystem particle;   // パーティクル再生用
-    [SerializeField] public Transform enemy;
     [SerializeField] private RandomEnemy _randomEnemy;
     [SerializeField] private CountDown50 _countdown;
     private Transform _tr;
