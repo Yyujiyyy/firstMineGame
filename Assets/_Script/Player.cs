@@ -16,10 +16,6 @@ public class Player : MonoBehaviour
 
     private CheckBox currentRayTarget = null;
 
-    [Header("連射の銃弾関連")]
-    [SerializeField] private float fireRate = 0.2f; // 🔫 連射間隔（秒）
-    private float nextFireTime = 0f;                // ⏱ 次に発射可能な時間
-
     void Start()
     {
         _tr = transform;
@@ -30,13 +26,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // ======================
-        // 左クリック長押し対応（GetMouseButton）
-        // ======================
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0))
         {
-            nextFireTime = Time.time + fireRate; // 次の発射時間を更新
-
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
@@ -51,7 +42,7 @@ public class Player : MonoBehaviour
                     BotUnit unit = hitObj.GetComponentInParent<BotUnit>();
                     if (unit != null)
                     {
-                        unit.TakeDamage(true);  // 🎯 ヘッドショット
+                        unit.TakeDamage(true);  // ヘッドショット
                     }
                 }
                 // ======================
@@ -62,7 +53,7 @@ public class Player : MonoBehaviour
                     BotUnit unit = hitObj.GetComponent<BotUnit>();
                     if (unit != null)
                     {
-                        unit.TakeDamage(false);  // 🔘 通常攻撃
+                        unit.TakeDamage(false);  // 通常攻撃
                     }
                 }
 
@@ -76,12 +67,12 @@ public class Player : MonoBehaviour
                     {
                         if (target == currentRayTarget)
                         {
-                            target.ToggleUI(); // 同じ対象を再度クリック：トグル
+                            target.ToggleUI();
                         }
                         else
                         {
                             if (currentRayTarget != null)
-                                currentRayTarget.HideUI(); // 前のUIを非表示
+                                currentRayTarget.HideUI();
 
                             target.ToggleUI();
                             currentRayTarget = target;
@@ -108,9 +99,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        // ▼（参考）クリック1回ごとの処理を行いたい場合はこちらを使う：
-        // if (Input.GetMouseButtonDown(0)) { ... }
     }
 
     public void Generate(RaycastHit hitInfo)
