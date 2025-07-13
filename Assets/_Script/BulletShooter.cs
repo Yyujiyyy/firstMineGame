@@ -7,17 +7,20 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] private GameObject Popup;
     [SerializeField] private GameObject MuzzleFlashPrefab;
 
+    [SerializeField] private float fireRate = 0.2f;
+    private float nextFireTime = 0f;
+
     void Update()
     {
-        if (Popup.activeSelf)
-        {
-            return;
-        }
+        if (Popup == null || Popup.activeSelf) return;
 
-        if (Input.GetMouseButtonDown(0))
+        // 左クリック長押し＆連射制御
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + fireRate;
+
             GameObject flash = Instantiate(MuzzleFlashPrefab, firePoint.position, Quaternion.identity);
-            flash.transform.SetParent(firePoint);           // 銃口を追従させる
+            flash.transform.SetParent(firePoint);
             Fire();
             Destroy(flash, 0.2f);
         }
