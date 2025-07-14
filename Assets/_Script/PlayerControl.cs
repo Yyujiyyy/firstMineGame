@@ -82,7 +82,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Popup == null)
         {
-            Debug.LogWarning("Popup が null または Destroyされています。Updateを終了します。");
+            Debug.LogWarning("Popup が null または DestroyされたのでUpdateを終了します。");
             isActive = false;  // Popupがなくなったので以降処理を止める
             return;
         }
