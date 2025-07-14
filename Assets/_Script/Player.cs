@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 
     private CheckBox currentRayTarget = null;
 
+    [Header("連射関連")]
+    [SerializeField] private float fireRate = 0.2f;
+    private float nextFireTime = 0f;
+
     void Start()
     {
         _tr = transform;
@@ -26,8 +30,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + fireRate;
+
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
