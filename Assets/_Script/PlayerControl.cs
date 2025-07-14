@@ -279,6 +279,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    //カーソルロックメソッド
     public void LockCursor()
     {
         cursorLock = true;

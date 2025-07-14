@@ -2,7 +2,7 @@
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 1000f;
+    public float speed = 100f;
     public float maxDistance = 100f;
 
     private Vector3 direction;
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
         direction = (target - origin).normalized;
         transform.position = origin;
 
-        // Meshを非表示にするならここ
+        //↓ Cubeを使うのでMeshRendererの制御は不要のためコメントアウト
         var mesh = GetComponent<MeshRenderer>();
         if (mesh != null) mesh.enabled = false;
     }
@@ -27,5 +27,27 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject); // 一定距離超えたら削除
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Head"))
+        {
+            var bot = other.GetComponentInParent<BotUnit>();
+            if (bot != null)
+            {
+                bot.TakeDamage(true); // ヘッドショット
+            }
+        }
+        else if (other.CompareTag("BotEnemy"))
+        {
+            var bot = other.GetComponent<BotUnit>();
+            if (bot != null)
+            {
+                bot.TakeDamage(false); // 胴体
+            }
+        }
+
+        Destroy(gameObject); // 命中後に弾を消す
     }
 }

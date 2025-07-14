@@ -9,7 +9,7 @@ public class BulletShooter : MonoBehaviour
 
     [Header("連射関連")]
     [SerializeField] private float fireRate = 0.2f;
-    private float nextFireTime = 0.2f;
+    private float nextFireTime = 0f;
 
     void Update()
     {
@@ -42,8 +42,11 @@ public class BulletShooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * 100f;
         }
 
+        // 🔧 弾の出現位置を firePoint の前方に少しオフセットする
+        Vector3 spawnPosition = firePoint.position + firePoint.forward * 0.2f;
+
         // 弾を生成して発射方向を設定
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().Init(firePoint.position, targetPoint);
+        bullet.GetComponent<Bullet>().Init(spawnPosition, targetPoint);
     }
 }
