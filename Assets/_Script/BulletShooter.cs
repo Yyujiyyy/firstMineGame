@@ -7,8 +7,9 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] private GameObject Popup;
     [SerializeField] private GameObject MuzzleFlashPrefab;
 
+    [Header("連射関連")]
     [SerializeField] private float fireRate = 0.2f;
-    private float nextFireTime = 0f;
+    private float nextFireTime = 0.2f;
 
     void Update()
     {
