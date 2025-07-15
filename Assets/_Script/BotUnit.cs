@@ -20,7 +20,7 @@ public class BotUnit : MonoBehaviour
         isDead = false;         // 死亡フラグ解除
         isInitialized = false;  // Initの再許可（再生成時のマネージャー再設定用）
 
-        Debug.Log($"OnEnableでHP初期化: {currentHP}");
+        //Debug.Log($"OnEnableでHP初期化: {currentHP}");
     }
 
     // ===========================
@@ -36,7 +36,7 @@ public class BotUnit : MonoBehaviour
 
         isInitialized = true;    // 初期化済みフラグ
 
-        Debug.Log($"Init実行: HP = {currentHP}");
+        //Debug.Log($"Init実行: HP = {currentHP}");
     }
 
     // ===========================
@@ -59,13 +59,13 @@ public class BotUnit : MonoBehaviour
 
         if (isHeadshot)
         {
-            Debug.Log("ヘッドショット！");
+            //Debug.Log("ヘッドショット！");
             Die(true); // 即死
         }
         else
         {
             currentHP--;
-            Debug.Log($"胴体被弾！残りHP: {currentHP}");
+            //Debug.Log($"胴体被弾！残りHP: {currentHP}");
 
             if (currentHP <= 0)
             {
@@ -85,11 +85,11 @@ public class BotUnit : MonoBehaviour
 
         if (isHeadshot)
         {
-            Debug.Log("ヘッドショットで死亡！");
+            //Debug.Log("ヘッドショットで死亡！");
         }
         else
         {
-            Debug.Log("通常死亡");
+            //Debug.Log("通常死亡");
         }
 
         manager.OnEnemyDeath(gameObject, spawnPos); // マネージャーに通知
