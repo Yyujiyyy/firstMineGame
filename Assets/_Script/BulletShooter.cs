@@ -4,12 +4,21 @@ public class BulletShooter : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;     // 弾のプレハブ
     [SerializeField] private Transform firePoint;         // 弾の発射位置（銃口など）
-    [SerializeField] private GameObject Popup;
-    [SerializeField] private GameObject MuzzleFlashPrefab;
+    [SerializeField] private GameObject Popup;            // 設定画面
+    [SerializeField] private GameObject MuzzleFlashPrefab;// マズルフラッシュ
 
     [Header("連射関連")]
-    [SerializeField] private float fireRate = 0.2f;
+    [SerializeField] public float fireRate = 0.1f;
     private float nextFireTime = 0f;
+
+    [Header("銃声関連")]
+    public AudioClip sound1;
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -23,6 +32,8 @@ public class BulletShooter : MonoBehaviour
             GameObject flash = Instantiate(MuzzleFlashPrefab, firePoint.position, Quaternion.identity);
             flash.transform.SetParent(firePoint);
             Fire();
+            audioSource.PlayOneShot(sound1);
+
             Destroy(flash, 0.2f);
         }
     }
@@ -30,7 +41,7 @@ public class BulletShooter : MonoBehaviour
     void Fire()
     {
         // 画面中央からRayを飛ばす
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));     //randomにする
         Vector3 targetPoint;
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
