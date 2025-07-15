@@ -17,7 +17,7 @@ public class BulletProcess : MonoBehaviour
     private CheckBox currentRayTarget = null;
 
     [Header("連射関連")]
-    [SerializeField] private float fireRate = 0.2f;
+    public BulletShooter shot;      //Bulletshooterスクリプトを参照
     private float nextFireTime = 0f;
 
     void Start()
@@ -32,7 +32,7 @@ public class BulletProcess : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + shot.fireRate;
 
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
