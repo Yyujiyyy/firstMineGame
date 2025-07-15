@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour
+public class BulletProcess : MonoBehaviour
 {
     public ParticleSystem particle;   // パーティクル再生用
     [SerializeField] private RandomEnemy _randomEnemy;
