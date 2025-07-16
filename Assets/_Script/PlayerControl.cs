@@ -286,4 +286,19 @@ public class PlayerControl : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    // =============================
+    // 🎯 プレイヤーが移動しているか判定（スプレッド用）
+    // =============================
+    public bool IsMoving
+    {
+        get
+        {
+            if (rb == null) return false;
+
+            Vector3 horizontalVelocity = rb.velocity;
+            horizontalVelocity.y = 0f; // Y軸は無視（ジャンプ中でも動いてるとみなさない）
+            return horizontalVelocity.magnitude > 0.05f;
+        }
+    }
 }
