@@ -15,6 +15,9 @@ public class BulletShooter : MonoBehaviour
     public AudioClip sound1;
     AudioSource audioSource;
 
+    [Header("スプレッド関連")]
+    [SerializeField] private float moveSpreadAngle = 3f; // 移動中の最大拡散角度（度数）
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -31,6 +34,7 @@ public class BulletShooter : MonoBehaviour
 
             GameObject flash = Instantiate(MuzzleFlashPrefab, firePoint.position, Quaternion.identity);
             flash.transform.SetParent(firePoint);
+
             Fire();
             audioSource.PlayOneShot(sound1);
 
@@ -53,11 +57,35 @@ public class BulletShooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * 100f;
         }
 
+        // 🔽 プレイヤーが動いている場合、ターゲットポイントにスプレッドを加える
+        if (PlayerControl.Instance != null && PlayerControl.Instance.IsMoving)
+        {
+            targetPoint = ApplySpread(targetPoint, moveSpreadAngle);
+        }
+
         // 🔧 弾の出現位置を firePoint の前方に少しオフセットする
         Vector3 spawnPosition = firePoint.position + firePoint.forward * 0.2f;
 
         // 弾を生成して発射方向を設定
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<Bullet>().Init(spawnPosition, targetPoint);
+    }
+
+    // スプレッド角度の範囲内でターゲット位置をずらす
+    Vector3 ApplySpread(Vector3 originalTarget, float maxAngle)
+    {
+        // 射線の方向ベクトルを取得
+        Vector3 direction = (originalTarget - firePoint.position).normalized;
+
+        // ランダムな角度で回転を加える（上下左右）
+        float angleX = Random.Range(-maxAngle, maxAngle);
+        float angleY = Random.Range(-maxAngle, maxAngle);
+        Quaternion spreadRotation = Quaternion.Euler(angleX, angleY, 0f);
+
+        // 回転を適用して新たなターゲット位置を計算
+        Vector3 spreadDirection = spreadRotation * direction;
+        Vector3 spreadTarget = firePoint.position + spreadDirection * 100f;
+
+        return spreadTarget;
     }
 }
