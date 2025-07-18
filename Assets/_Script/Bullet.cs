@@ -2,7 +2,7 @@
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 100f;
+    public float speed = 1000f;
     public float maxDistance = 100f;
 
     private Vector3 direction;
