@@ -746,8 +746,9 @@ MonoBehaviour:
   Popup: {fileID: 1914606310}
   MuzzleFlashPrefab: {fileID: 4321390100199336718, guid: d0b096144149f6c4d876481ddd300ad5,
     type: 3}
-  fireRate: 0.1
+  fireRate: 0.12
   sound1: {fileID: 8300000, guid: 6b1df9ab049c2464fae5a8e9cf4f52d8, type: 3}
+  moveSpreadAngle: 30
 --- !u!82 &199513987
 AudioSource:
   m_ObjectHideFlags: 0

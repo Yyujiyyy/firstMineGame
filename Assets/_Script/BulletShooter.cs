@@ -16,7 +16,7 @@ public class BulletShooter : MonoBehaviour
     AudioSource audioSource;
 
     [Header("スプレッド関連")]
-    [SerializeField] private float moveSpreadAngle = 3f; // 移動中の最大拡散角度（度数）
+    [SerializeField] private float moveSpreadAngle = 10f; // 移動中の最大拡散角度（度数）
 
     void Start()
     {
@@ -74,18 +74,34 @@ public class BulletShooter : MonoBehaviour
     // スプレッド角度の範囲内でターゲット位置をずらす
     Vector3 ApplySpread(Vector3 originalTarget, float maxAngle)
     {
-        // 射線の方向ベクトルを取得
         Vector3 direction = (originalTarget - firePoint.position).normalized;
 
-        // ランダムな角度で回転を加える（上下左右）
-        float angleX = Random.Range(-maxAngle, maxAngle);
-        float angleY = Random.Range(-maxAngle, maxAngle);
-        Quaternion spreadRotation = Quaternion.Euler(angleX, angleY, 0f);
+        // nullチェックを追加（念のため）
+        if (Camera.main == null)
+        {
+            Debug.LogWarning("Camera.main is null");
+            return originalTarget;
+        }
 
-        // 回転を適用して新たなターゲット位置を計算
-        Vector3 spreadDirection = spreadRotation * direction;
-        Vector3 spreadTarget = firePoint.position + spreadDirection * 100f;
+        Vector3 right = Camera.main.transform.right;
+        Vector3 up = Camera.main.transform.up;
 
-        return spreadTarget;
+        // Spread値生成
+        Vector2 spread = Random.insideUnitCircle * Mathf.Tan(maxAngle * Mathf.Deg2Rad);
+        Vector3 spreadDirection = direction + right * spread.x + up * spread.y;
+        spreadDirection.Normalize();
+
+        Vector3 result = firePoint.position + spreadDirection * 100f;
+
+        if (float.IsNaN(result.x) || float.IsNaN(result.y) || float.IsNaN(result.z))
+        {
+            Debug.LogWarning("SpreadTarget is NaN!");
+            return originalTarget;
+        }
+
+        // デバッグ用に描画（赤色の線）
+        Debug.DrawRay(firePoint.position, spreadDirection * 10f, Color.red, 0.5f);
+
+        return result;
     }
 }
