@@ -1,22 +1,53 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class RandomEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ParticleSystem deathEffect; // 死亡エフェクト
+    [SerializeField][Range(1, 10)] private int maxHP = 4;
+
+    private int currentHP;
+    private bool isDead;
+
+    private void Start()
     {
-        transform.position = new Vector3(0, 0.7f, 20);
+        Respawn(); // 初期スポーン時
     }
 
-    public void EnemyGenerate()
+    public void TakeDamage(bool isHeadshot)
     {
-        int xEnemyPos = Random.Range(-20, 21);  //-20以上21未満
-        //変数"Xenemypos"の値をRandomクラスの、Rangeメソッドを使ってランダムに決めている
+        if (isDead) return;
 
-        int zPnemyPos = Random.Range(1, 21);    //1以上21未満
-        //変数"Yenemypos"の値をRandomクラスの、Rangeメソッドを使ってランダムに決めている
+        if (isHeadshot || --currentHP <= 0)
+        {
+            StartCoroutine(DieAndRespawn());
+        }
+    }
 
-        transform.position = new Vector3(xEnemyPos, 0.7f, zPnemyPos);
-        //敵をランダムな場所に一回配置
+    private IEnumerator DieAndRespawn()
+    {
+        isDead = true;
+
+        // 死亡エフェクト再生
+        if (deathEffect != null)
+        {
+            deathEffect.transform.position = transform.position;
+            deathEffect.Play();
+        }
+
+        // しばらく待って再配置
+        yield return new WaitForSeconds(0.01f);
+
+        Respawn(); // ランダムワープして復活
+    }
+
+    private void Respawn()
+    {
+        float x = Random.Range(-20f, 20f);
+        float z = Random.Range(1f, 20f);
+        transform.position = new Vector3(x, 0.7f, z);
+
+        currentHP = maxHP;
+        isDead = false;
     }
 }

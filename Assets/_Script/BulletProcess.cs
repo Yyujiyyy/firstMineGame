@@ -87,11 +87,16 @@ public class BulletProcess : MonoBehaviour
                 }
 
                 // ======================
-                // 敵生成（RandomEnemy タグ）
+                // 通常ヒット（RandomEnemy タグ）
                 // ======================
                 if (hitObj.CompareTag("RandomEnemy"))
                 {
-                    Generate(hitInfo);
+                    _randomEnemy.TakeDamage(false);
+                }
+
+                else if(hitObj.CompareTag("RandomEnemyHead"))
+                {
+                    _randomEnemy.TakeDamage(true);
                 }
             }
             else
@@ -113,7 +118,7 @@ public class BulletProcess : MonoBehaviour
 
         if (_randomEnemy != null)
         {
-            _randomEnemy.EnemyGenerate();
+            //_randomEnemy.EnemyGenerate();
             _countdown.DocumentCount();
         }
     }
