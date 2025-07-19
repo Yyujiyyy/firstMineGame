@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BulletProcess : MonoBehaviour
 {
@@ -32,7 +32,7 @@ public class BulletProcess : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + shot.fireRate;
+            nextFireTime = Time.time + shot.FireRate;
 
             Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
@@ -61,6 +61,7 @@ public class BulletProcess : MonoBehaviour
                     if (unit != null)
                     {
                         unit.TakeDamage(false);  // 通常攻撃
+                        Generate(hitInfo);
                     }
                 }
 
@@ -93,9 +94,10 @@ public class BulletProcess : MonoBehaviour
                 if (hitObj.CompareTag("RandomEnemy"))
                 {
                     _randomEnemy.TakeDamage(false);
+                    Generate(hitInfo);
                 }
 
-                else if(hitObj.CompareTag("RandomEnemyHead"))
+                else if (hitObj.CompareTag("RandomEnemyHead"))
                 {
                     _randomEnemy.TakeDamage(true);
                     Generate(hitInfo);
@@ -116,12 +118,14 @@ public class BulletProcess : MonoBehaviour
 
     public void Generate(RaycastHit hitInfo)
     {
-        Instantiate(particle, hitInfo.point, Quaternion.identity);
+        var particleObj = Instantiate(particle, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+        particleObj.GetComponent<ParticleSystem>().Play();
 
         if (_randomEnemy != null)
         {
-            _randomEnemy.DieAndRespawn();
+            StartCoroutine(_randomEnemy.DieAndRespawn());
             _countdown.DocumentCount();
         }
+        Debug.Log("は?");
     }
 }

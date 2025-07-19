@@ -2,41 +2,41 @@
 
 public class BulletShooter : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;     // 弾のプレハブ
-    [SerializeField] private Transform firePoint;         // 弾の発射位置（銃口など）
-    [SerializeField] private GameObject Popup;            // 設定画面
-    [SerializeField] private GameObject MuzzleFlashPrefab;// マズルフラッシュ
+    [SerializeField] private GameObject _bulletPrefab;     // 弾のプレハブ
+    [SerializeField] private Transform _firePoint;         // 弾の発射位置（銃口など）
+    [SerializeField] private GameObject _popup;            // 設定画面
+    [SerializeField] private GameObject _muzzleFlashPrefab;// マズルフラッシュ
 
     [Header("連射関連")]
-    [SerializeField] public float fireRate = 0.1f;
+    [SerializeField] public float FireRate = 0.1f;
     private float nextFireTime = 0f;
 
     [Header("銃声関連")]
-    public AudioClip sound1;
-    AudioSource audioSource;
+    public AudioClip Sound1;
+    private AudioSource _audioSource;
 
     [Header("スプレッド関連")]
-    [SerializeField] private float moveSpreadAngle = 10f; // 移動中の最大拡散角度（度数）
+    [SerializeField] private float _moveSpreadAngle = 10f; // 移動中の最大拡散角度（度数）
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Popup == null || Popup.activeSelf) return;
+        if (_popup == null || _popup.activeSelf) return;
 
         // 左クリック長押し＆連射制御
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + FireRate;
 
-            GameObject flash = Instantiate(MuzzleFlashPrefab, firePoint.position, Quaternion.identity);
-            flash.transform.SetParent(firePoint);
+            GameObject flash = Instantiate(_muzzleFlashPrefab, _firePoint.position, Quaternion.identity);
+            flash.transform.SetParent(_firePoint);
 
             Fire();
-            audioSource.PlayOneShot(sound1);
+            _audioSource.PlayOneShot(Sound1);
 
             Destroy(flash, 0.2f);
         }
@@ -60,21 +60,21 @@ public class BulletShooter : MonoBehaviour
         // 🔽 プレイヤーが動いている場合、ターゲットポイントにスプレッドを加える
         if (PlayerControl.Instance != null && PlayerControl.Instance.IsMoving)
         {
-            targetPoint = ApplySpread(targetPoint, moveSpreadAngle);
+            targetPoint = ApplySpread(targetPoint, _moveSpreadAngle);
         }
 
         // 🔧 弾の出現位置を firePoint の前方に少しオフセットする
-        Vector3 spawnPosition = firePoint.position + firePoint.forward * 0.2f;
+        Vector3 spawnPosition = _firePoint.position + _firePoint.forward * 0.2f;
 
         // 弾を生成して発射方向を設定
-        GameObject bullet = Instantiate(bulletPrefab);
+        GameObject bullet = Instantiate(_bulletPrefab);
         bullet.GetComponent<Bullet>().Init(spawnPosition, targetPoint);
     }
 
     // スプレッド角度の範囲内でターゲット位置をずらす
     Vector3 ApplySpread(Vector3 originalTarget, float maxAngle)
     {
-        Vector3 direction = (originalTarget - firePoint.position).normalized;
+        Vector3 direction = (originalTarget - _firePoint.position).normalized;
 
         // nullチェックを追加（念のため）
         if (Camera.main == null)
@@ -91,7 +91,7 @@ public class BulletShooter : MonoBehaviour
         Vector3 spreadDirection = direction + right * spread.x + up * spread.y;
         spreadDirection.Normalize();
 
-        Vector3 result = firePoint.position + spreadDirection * 100f;
+        Vector3 result = _firePoint.position + spreadDirection * 100f;
 
         if (float.IsNaN(result.x) || float.IsNaN(result.y) || float.IsNaN(result.z))
         {
@@ -100,7 +100,7 @@ public class BulletShooter : MonoBehaviour
         }
 
         // デバッグ用に描画（赤色の線）
-        Debug.DrawRay(firePoint.position, spreadDirection * 10f, Color.red, 0.5f);
+        //Debug.DrawRay(_firePoint.position, spreadDirection * 10f, Color.red, 0.5f);
 
         return result;
     }
