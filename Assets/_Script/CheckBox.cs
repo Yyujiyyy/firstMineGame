@@ -13,7 +13,7 @@ public class CheckBox : MonoBehaviour
     [SerializeField] private GameObject CountDowntimer;
 
     //[SerializeField] private GameObject _Enemy;           // 通常の敵
-    [SerializeField] private GameObject _R_enemy;         // 変化後の敵
+    [SerializeField] private GameObject _T_enemy;         // 変化後の敵
     public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
 
     private bool isActive = false;   // UIが現在表示されているかどうかのフラグ
@@ -60,7 +60,7 @@ public class CheckBox : MonoBehaviour
 
         // 通常の敵を非表示にし、変化後の敵を表示
         //_Enemy.SetActive(false);
-        _R_enemy.SetActive(true);
+        _T_enemy.SetActive(true);
 
         // 表示状態を記録
         isActive = true;
@@ -82,7 +82,7 @@ public class CheckBox : MonoBehaviour
 
         // 敵表示を元に戻す
         //_Enemy.SetActive(true);
-        _R_enemy.SetActive(false);
+        _T_enemy.SetActive(false);
 
         // 表示状態をリセット
         isActive = false;
