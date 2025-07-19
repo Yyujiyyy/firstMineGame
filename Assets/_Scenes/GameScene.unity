@@ -669,8 +669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f906eae72f8f33b4ca489d05cd2731ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 3528444742757911261, guid: 239012817ffbac1418ae78d08fcbb935,
+  FinalRotation: {x: 0, y: 0, z: 0, w: 0}
+  HeadDestroy: {fileID: 7873101658334668157, guid: 028682cbf75ab0544a6e8e0c133ea432,
     type: 3}
+  Destroy: {fileID: 4759041607099546579, guid: c8a5b023b49ee8b4ea47a91fbddc3aaa, type: 3}
   _randomEnemy: {fileID: 1166115576}
   _countdown: {fileID: 722440760}
   mainCamera: {fileID: 330585545}
@@ -740,15 +742,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7572c9b44fa9e4bbbdf2e372963d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8352087769052855435, guid: 343b1e66f23d9294da2d532a6a042026,
+  _bulletPrefab: {fileID: 8352087769052855435, guid: 343b1e66f23d9294da2d532a6a042026,
     type: 3}
-  firePoint: {fileID: 1575874462}
-  Popup: {fileID: 1914606310}
-  MuzzleFlashPrefab: {fileID: 4321390100199336718, guid: d0b096144149f6c4d876481ddd300ad5,
+  _firePoint: {fileID: 1575874462}
+  _popup: {fileID: 1914606310}
+  _muzzleFlashPrefab: {fileID: 4321390100199336718, guid: d0b096144149f6c4d876481ddd300ad5,
     type: 3}
-  fireRate: 0.12
-  sound1: {fileID: 8300000, guid: 6b1df9ab049c2464fae5a8e9cf4f52d8, type: 3}
-  moveSpreadAngle: 30
+  FireRate: 0.1
+  Sound1: {fileID: 8300000, guid: 6b1df9ab049c2464fae5a8e9cf4f52d8, type: 3}
+  _moveSpreadAngle: 10
 --- !u!82 &199513987
 AudioSource:
   m_ObjectHideFlags: 0

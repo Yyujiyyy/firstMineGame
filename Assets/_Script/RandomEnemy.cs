@@ -28,12 +28,7 @@ public class RandomEnemy : MonoBehaviour
     {
         isDead = true;
 
-        // 死亡エフェクト再生
-        //if (deathEffect != null)
-        //{
-        //    deatheffect.transform.position = transform.position;
-        //    deathEffect.Play();
-        //}
+        
 
         // しばらく待って再配置
         yield return new WaitForSeconds(0.01f);

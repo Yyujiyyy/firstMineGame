@@ -1,10 +1,16 @@
-﻿using UnityEngine;
+﻿using UnityEditor.PackageManager;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class BulletProcess : MonoBehaviour
 {
-    public ParticleSystem particle;   // パーティクル再生用
+    [Header("パーティクル関連")]
+    public Quaternion FinalRotation;
+    public ParticleSystem HeadDestroy;   // パーティクル再生用
+    public ParticleSystem Destroy;  // 破壊時のパーティクル
+
     [SerializeField] private RandomEnemy _randomEnemy;
     [SerializeField] private CountDown50 _countdown;
     private Transform _tr;
@@ -61,7 +67,7 @@ public class BulletProcess : MonoBehaviour
                     if (unit != null)
                     {
                         unit.TakeDamage(false);  // 通常攻撃
-                        Generate(hitInfo);
+                        Particle(hitInfo);
                     }
                 }
 
@@ -94,7 +100,7 @@ public class BulletProcess : MonoBehaviour
                 if (hitObj.CompareTag("RandomEnemy"))
                 {
                     _randomEnemy.TakeDamage(false);
-                    Generate(hitInfo);
+                    Particle(hitInfo);
                 }
 
                 else if (hitObj.CompareTag("RandomEnemyHead"))
@@ -116,16 +122,35 @@ public class BulletProcess : MonoBehaviour
         }
     }
 
+    public void Angle(RaycastHit hitInfo)       //これもpublicでないと使えない
+    {
+        Quaternion baseRotation = Quaternion.LookRotation(hitInfo.normal);
+        Quaternion extraRotation = Quaternion.AngleAxis(100f, Vector3.up); // Y軸に+100度
+        Quaternion FinalRotation = extraRotation * baseRotation;
+    }
+
     public void Generate(RaycastHit hitInfo)
     {
-        var particleObj = Instantiate(particle, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-        particleObj.GetComponent<ParticleSystem>().Play();
+        var particleObj = Instantiate(HeadDestroy, hitInfo.point,FinalRotation);
+        var ps = particleObj.GetComponent<ParticleSystem>();      //Play()しなければみえない！！
+        ps.Play();
 
         if (_randomEnemy != null)
         {
             StartCoroutine(_randomEnemy.DieAndRespawn());
             _countdown.DocumentCount();
         }
-        Debug.Log("は?");
+
+        Destroy(particleObj.gameObject, ps.main.duration + 0.5f);
+    }
+
+    public void Particle(RaycastHit hitInfo)
+    {
+        var particleObj =Instantiate(Destroy, hitInfo.collider.bounds.center, Quaternion.identity);
+        var ps = particleObj.GetComponent<ParticleSystem>();
+
+        ps.Play();
+
+        Destroy(particleObj.gameObject, ps.main.duration + 0.5f);
     }
 }
