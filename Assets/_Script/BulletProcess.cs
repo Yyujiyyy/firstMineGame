@@ -49,6 +49,7 @@ public class BulletProcess : MonoBehaviour
                     if (unit != null)
                     {
                         unit.TakeDamage(true);  // ヘッドショット
+                        Generate(hitInfo);
                     }
                 }
                 // ======================
@@ -97,6 +98,7 @@ public class BulletProcess : MonoBehaviour
                 else if(hitObj.CompareTag("RandomEnemyHead"))
                 {
                     _randomEnemy.TakeDamage(true);
+                    Generate(hitInfo);
                 }
             }
             else
@@ -118,7 +120,7 @@ public class BulletProcess : MonoBehaviour
 
         if (_randomEnemy != null)
         {
-            //_randomEnemy.EnemyGenerate();
+            _randomEnemy.DieAndRespawn();
             _countdown.DocumentCount();
         }
     }

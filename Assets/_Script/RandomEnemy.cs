@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RandomEnemy : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem deathEffect; // 死亡エフェクト
+    //[SerializeField] private ParticleSystem deathEffect; // 死亡エフェクト
     [SerializeField][Range(1, 10)] private int maxHP = 4;
 
     private int currentHP;
@@ -24,16 +24,16 @@ public class RandomEnemy : MonoBehaviour
         }
     }
 
-    private IEnumerator DieAndRespawn()
+    public IEnumerator DieAndRespawn()
     {
         isDead = true;
 
         // 死亡エフェクト再生
-        if (deathEffect != null)
-        {
-            deathEffect.transform.position = transform.position;
-            deathEffect.Play();
-        }
+        //if (deathEffect != null)
+        //{
+        //    deatheffect.transform.position = transform.position;
+        //    deathEffect.Play();
+        //}
 
         // しばらく待って再配置
         yield return new WaitForSeconds(0.01f);
