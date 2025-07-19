@@ -2056,7 +2056,7 @@ Transform:
   m_GameObject: {fileID: 838260280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.376335, y: 12.747901, z: -3.8909678}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2281,12 +2281,12 @@ PrefabInstance:
     - target: {fileID: 3543127077217856887, guid: 2be162adb9ed6e548b08d1fe261e3c0f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3543127077217856887, guid: 2be162adb9ed6e548b08d1fe261e3c0f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3543127077217856887, guid: 2be162adb9ed6e548b08d1fe261e3c0f,
         type: 3}
@@ -2826,6 +2826,12 @@ MonoBehaviour:
   sensitivitySlider: {fileID: 2118206263}
   inputFieldSensitivity: {fileID: 2118206262}
   cameraScript: {fileID: 199513984}
+--- !u!1 &1166115574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3291860428383551614, guid: 2be162adb9ed6e548b08d1fe261e3c0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 937577490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1166115575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3543127077217856887, guid: 2be162adb9ed6e548b08d1fe261e3c0f,
@@ -3491,10 +3497,10 @@ MonoBehaviour:
   CountUptimerText: {fileID: 943760719}
   countUpTimer: {fileID: 1340920961}
   CountDowntimer: {fileID: 722440756}
-  _T_enemy: {fileID: 3291860428383551614, guid: 35386b3bbab08ff468e231da680c4e4c,
-    type: 3}
+  _T_enemy: {fileID: 1166115574}
   _HideObj:
   - {fileID: 100030, guid: 59945dece27e7614b9aae48d188769ce, type: 3}
+  - {fileID: 1166115574}
   - {fileID: 3291860428383551614, guid: 35386b3bbab08ff468e231da680c4e4c, type: 3}
 --- !u!65 &1510936453
 BoxCollider:

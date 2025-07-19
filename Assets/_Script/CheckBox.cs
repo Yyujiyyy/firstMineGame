@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
 
 public class CheckBox : MonoBehaviour
@@ -12,7 +11,6 @@ public class CheckBox : MonoBehaviour
 
     [SerializeField] private GameObject CountDowntimer;
 
-    //[SerializeField] private GameObject _Enemy;           // 通常の敵
     [SerializeField] private GameObject _T_enemy;         // 変化後の敵
     public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
 
@@ -59,7 +57,6 @@ public class CheckBox : MonoBehaviour
         }
 
         // 通常の敵を非表示にし、変化後の敵を表示
-        //_Enemy.SetActive(false);
         _T_enemy.SetActive(true);
 
         // 表示状態を記録
