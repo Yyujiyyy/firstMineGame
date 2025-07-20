@@ -9,7 +9,7 @@ public class BulletProcess : MonoBehaviour
     [Header("パーティクル関連")]
     public Quaternion FinalRotation;
     public ParticleSystem HeadDestroy;   // パーティクル再生用
-    public ParticleSystem Destroy;  // 破壊時のパーティクル
+    public ParticleSystem _Destroy;  // 破壊時のパーティクル
 
     [SerializeField] private RandomEnemy _randomEnemy;
     [SerializeField] private CountDown50 _countdown;
@@ -122,16 +122,9 @@ public class BulletProcess : MonoBehaviour
         }
     }
 
-    public void Angle(RaycastHit hitInfo)       //これもpublicでないと使えない
-    {
-        Quaternion baseRotation = Quaternion.LookRotation(hitInfo.normal);
-        Quaternion extraRotation = Quaternion.AngleAxis(100f, Vector3.up); // Y軸に+100度
-        Quaternion FinalRotation = extraRotation * baseRotation;
-    }
-
     public void Generate(RaycastHit hitInfo)
     {
-        var particleObj = Instantiate(HeadDestroy, hitInfo.point,FinalRotation);
+        var particleObj = Instantiate(HeadDestroy, hitInfo.point, Quaternion.LookRotation(Vector3.forward) * Quaternion.AngleAxis(100f, Vector3.forward));
         var ps = particleObj.GetComponent<ParticleSystem>();      //Play()しなければみえない！！
         ps.Play();
 
@@ -146,7 +139,7 @@ public class BulletProcess : MonoBehaviour
 
     public void Particle(RaycastHit hitInfo)
     {
-        var particleObj =Instantiate(Destroy, hitInfo.collider.bounds.center, Quaternion.identity);
+        var particleObj =Instantiate(_Destroy, hitInfo.collider.bounds.center, Quaternion.identity);
         var ps = particleObj.GetComponent<ParticleSystem>();
 
         ps.Play();
