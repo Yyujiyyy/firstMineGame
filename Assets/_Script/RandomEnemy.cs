@@ -6,6 +6,7 @@ public class RandomEnemy : MonoBehaviour
     //[SerializeField] private ParticleSystem deathEffect; // 死亡エフェクト
     [SerializeField][Range(1, 10)] private int maxHP = 4;
 
+
     private int currentHP;
     private bool isDead;
 

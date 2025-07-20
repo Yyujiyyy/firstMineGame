@@ -124,7 +124,7 @@ public class BulletProcess : MonoBehaviour
 
     public void Generate(RaycastHit hitInfo)
     {
-        var particleObj = Instantiate(HeadDestroy, hitInfo.point, Quaternion.LookRotation(Vector3.forward) * Quaternion.AngleAxis(100f, Vector3.forward));
+        var particleObj = Instantiate(HeadDestroy, hitInfo.point, Quaternion.identity);
         var ps = particleObj.GetComponent<ParticleSystem>();      //Play()しなければみえない！！
         ps.Play();
 
