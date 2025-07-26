@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f906eae72f8f33b4ca489d05cd2731ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinalRotation: {x: 0, y: 0, z: 0, w: 0}
+  FinalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   HeadDestroy: {fileID: 7873101658334668157, guid: 028682cbf75ab0544a6e8e0c133ea432,
     type: 3}
   _Destroy: {fileID: 4759041607099546579, guid: c8a5b023b49ee8b4ea47a91fbddc3aaa,
@@ -680,6 +680,7 @@ MonoBehaviour:
   uiRaycaster: {fileID: 714115471}
   eventSystem: {fileID: 874695086}
   shot: {fileID: 199513986}
+  Sound1: {fileID: 8300000, guid: fc6aeec0452f17f41a6bf5d1ead17137, type: 3}
 --- !u!114 &199513984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,7 +765,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.751
   m_Pitch: 1
   Loop: 0
   Mute: 0

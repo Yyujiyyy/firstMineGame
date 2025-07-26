@@ -26,12 +26,20 @@ public class BulletProcess : MonoBehaviour
     public BulletShooter shot;      //Bulletshooterスクリプトを参照
     private float nextFireTime = 0f;
 
+    [Header("音関連")]
+    public AudioClip Sound1;
+    private AudioSource _audioSource;
+
     void Start()
     {
         _tr = transform;
 
         if (mainCamera == null)
             mainCamera = Camera.main;
+
+        _audioSource = GetComponent<AudioSource>();
+
+        SetBgmVolume(10);
     }
 
     void Update()
@@ -67,7 +75,7 @@ public class BulletProcess : MonoBehaviour
                     if (unit != null)
                     {
                         unit.TakeDamage(false);  // 通常攻撃
-                        Particle(hitInfo);
+                        _audioSource.PlayOneShot(Sound1);       //音
                     }
                 }
 
@@ -100,7 +108,7 @@ public class BulletProcess : MonoBehaviour
                 if (hitObj.CompareTag("RandomEnemy"))
                 {
                     _randomEnemy.TakeDamage(false);
-                    Particle(hitInfo);
+                    _audioSource.PlayOneShot(Sound1);       //音
                 }
 
                 else if (hitObj.CompareTag("RandomEnemyHead"))
@@ -145,5 +153,10 @@ public class BulletProcess : MonoBehaviour
         ps.Play();
 
         Destroy(particleObj.gameObject, ps.main.duration + 0.5f);
+    }
+
+    void SetBgmVolume(float volume)
+    {
+        _audioSource.volume = volume; // 0.0f ~ 1.0f
     }
 }

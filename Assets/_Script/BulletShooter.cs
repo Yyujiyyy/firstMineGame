@@ -21,6 +21,8 @@ public class BulletShooter : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+
+        Audio(0.5f);
     }
 
     void Update()
@@ -103,5 +105,10 @@ public class BulletShooter : MonoBehaviour
         //Debug.DrawRay(_firePoint.position, spreadDirection * 10f, Color.red, 0.5f);
 
         return result;
+    }
+
+    void Audio(float volume)
+    {
+        _audioSource.volume = volume;
     }
 }
