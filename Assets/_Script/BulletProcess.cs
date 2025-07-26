@@ -134,7 +134,7 @@ public class BulletProcess : MonoBehaviour
             _countdown.DocumentCount();
         }
 
-        Destroy(particleObj.gameObject, ps.main.duration + 0.5f);
+        Destroy(particleObj.gameObject,  0.2f);
     }
 
     public void Particle(RaycastHit hitInfo)
