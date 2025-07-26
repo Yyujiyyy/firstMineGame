@@ -1,5 +1,6 @@
 ﻿using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
@@ -29,6 +30,7 @@ public class BulletProcess : MonoBehaviour
     [Header("音関連")]
     public AudioClip Sound1;
     private AudioSource _audioSource;
+    [SerializeField] private AudioMixer _audioMixer;
 
     void Start()
     {
@@ -39,7 +41,8 @@ public class BulletProcess : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
 
-        SetBgmVolume(10);
+        SetBgmVolume(1);
+        SetSEVolume(12);
     }
 
     void Update()
@@ -158,5 +161,10 @@ public class BulletProcess : MonoBehaviour
     void SetBgmVolume(float volume)
     {
         _audioSource.volume = volume; // 0.0f ~ 1.0f
+    }
+
+    public void SetSEVolume(float dB)
+    {
+        _audioMixer.SetFloat("SEVolume", dB);
     }
 }

@@ -681,6 +681,7 @@ MonoBehaviour:
   eventSystem: {fileID: 874695086}
   shot: {fileID: 199513986}
   Sound1: {fileID: 8300000, guid: fc6aeec0452f17f41a6bf5d1ead17137, type: 3}
+  _audioMixer: {fileID: 24100000, guid: a979d885fecd8c24c94cc735748c7395, type: 2}
 --- !u!114 &199513984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,7 +763,8 @@ AudioSource:
   m_GameObject: {fileID: 199513978}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5974910106890583543, guid: a979d885fecd8c24c94cc735748c7395,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.751

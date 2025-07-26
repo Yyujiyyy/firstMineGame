@@ -22,7 +22,7 @@ public class BulletShooter : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        Audio(0.5f);
+        Audio(0.1f);
     }
 
     void Update()
