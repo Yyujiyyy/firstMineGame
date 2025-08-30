@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundDistance = 0.3f;
+    [SerializeField] private float groundDistance = 0.3f;   
     private bool isGrounded;
 
     // Valorant感度変換用の設定
@@ -28,8 +28,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float mouseDPI = 800f;            // 実際のマウスDPI（例：800）
 
     //移動時の視覚フィードバック
-    float speeed = 5f;
-    float amplitude = 10f;
+    float speeed = 6f;
 
     // UIでDPIを入力させる用のTextMeshPro InputField
     [Header("UI入力")]
@@ -146,10 +145,21 @@ public class PlayerControl : MonoBehaviour
             UpdateCursorLock();
         }
 
-        if(IsMoving)
+        if (IsMoving)
         {
-            float yOffset = (Mathf.Cos(Time.time * speeed) + 1f) / 2f * amplitude;
-            Gun.transform.localPosition = gunStartPos + new Vector3(0, yOffset, 0);
+            // 左右揺れ (sin波)
+            float xOffset = Mathf.Sin(Time.time * speeed) * 0.03f;
+
+            // 上下揺れ (cos波、少し速くて小さめ)
+            float yOffset = Mathf.Cos(Time.time * speeed * 2f) * 0.025f;
+
+            // 初期位置からのオフセット
+            Gun.transform.localPosition = gunStartPos + new Vector3(xOffset, yOffset, 0f);
+        }
+        else
+        {
+            // 移動していない時は初期位置に戻す
+            Gun.transform.localPosition = gunStartPos;
         }
     }
 
@@ -324,11 +334,9 @@ public class PlayerControl : MonoBehaviour
     {
         get
         {
-            if (rb == null) return false;
-
-            Vector3 horizontalVelocity = rb.velocity;
-            horizontalVelocity.y = 0f; // Y軸は無視（ジャンプ中でも動いてるとみなさない）
-            return horizontalVelocity.magnitude > 0.05f;
+            float hor = Input.GetAxisRaw("Horizontal");
+            float ver = Input.GetAxisRaw("Vertical");
+            return (hor != 0f || ver != 0f);
         }
     }
 
