@@ -23,14 +23,22 @@ public class PlayerControl : MonoBehaviour
     private bool isGrounded;
 
     // Valorant感度変換用の設定
-    [Header("Valorant感度変換")]
+    //[Header("Valorant感度変換")]
     [SerializeField] private float valorantSensitivity = 0.4f; // Valorant上の感度（例：0.4）
     [SerializeField] private float mouseDPI = 800f;            // 実際のマウスDPI（例：800）
+
+    //移動時の視覚フィードバック
+    float speeed = 5f;
+    float amplitude = 10f;
 
     // UIでDPIを入力させる用のTextMeshPro InputField
     [Header("UI入力")]
     [SerializeField] private TMP_InputField dpiInputField;
 
+    [Header("銃")]
+    [SerializeField] private GameObject Gun;
+    [Tooltip("銃の初期位置")]private Vector3 gunStartPos;
+    
     // 処理の有効・無効を管理するフラグ
     private bool isActive = true;  // trueなら処理実行、falseなら処理停止
 
@@ -72,6 +80,8 @@ public class PlayerControl : MonoBehaviour
         // 視点ロック
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        gunStartPos = Gun.transform.localPosition; // 初期位置を保存
     }
 
     // 毎フレームでの視点移動・カーソルロック処理
@@ -134,6 +144,12 @@ public class PlayerControl : MonoBehaviour
         if (Popup == null || !Popup.activeSelf)
         {
             UpdateCursorLock();
+        }
+
+        if(IsMoving)
+        {
+            float yOffset = (Mathf.Cos(Time.time * speeed) + 1f) / 2f * amplitude;
+            Gun.transform.localPosition = gunStartPos + new Vector3(0, yOffset, 0);
         }
     }
 
