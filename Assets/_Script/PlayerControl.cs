@@ -175,12 +175,24 @@ public class PlayerControl : MonoBehaviour
 
         //isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);
 
+        // =========================
+        // ジャンプ処理
+        // =========================
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
-            //一瞬の衝撃力を加える
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // 上方向リセット
+            rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);             // ジャンプ力
+            isGrounded = false;                                          // 瞬間的に地面フラグを下げる
+        }
 
-            isGrounded = false;
+        // =========================
+        // 落下を速くする処理（Better Fall）
+        // =========================
+        float fallMultiplier = 2.5f; // 落下速度を速くする倍率
+        if (rb.velocity.y < 0)       // 下降中のみ
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            // Physics.gravity.y は負の値なので、y方向の速度に加算して落下を速める
         }
     }
 
