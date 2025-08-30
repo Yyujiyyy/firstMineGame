@@ -173,12 +173,14 @@ public class PlayerControl : MonoBehaviour
 
         rb.MovePosition(targetPos);
 
-        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);
+        //isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundDistance, groundLayer);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
             //一瞬の衝撃力を加える
+
+            isGrounded = false;
         }
     }
 
@@ -300,5 +302,11 @@ public class PlayerControl : MonoBehaviour
             horizontalVelocity.y = 0f; // Y軸は無視（ジャンプ中でも動いてるとみなさない）
             return horizontalVelocity.magnitude > 0.05f;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            isGrounded = true;
     }
 }
