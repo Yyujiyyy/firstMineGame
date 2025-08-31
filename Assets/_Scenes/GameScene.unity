@@ -1495,7 +1495,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643845193}
-  - component: {fileID: 643845192}
   m_Layer: 0
   m_Name: ClickToTitleScriptBox
   m_TagString: Untagged
@@ -1503,18 +1502,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &643845192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643845191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23d67ecffc87d544a57b6649f68ec54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &643845193
 Transform:
   m_ObjectHideFlags: 0
@@ -4584,7 +4571,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 643845192}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ClickToTitle, Assembly-CSharp
         m_MethodName: GoToTitle
         m_Mode: 1

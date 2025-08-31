@@ -2,10 +2,10 @@
 
 public class BulletShooter : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;     // 弾のプレハブ
-    [SerializeField] private Transform _firePoint;         // 弾の発射位置（銃口など）
-    [SerializeField] private GameObject _popup;            // 設定画面
-    [SerializeField] private GameObject _muzzleFlashPrefab;// マズルフラッシュ
+    [SerializeField] private GameObject _bulletPrefab;      // 弾のプレハブ
+    [SerializeField] private Transform _firePoint;          // 発射位置
+    [SerializeField] private GameObject _popup;             // 設定画面
+    [SerializeField] private GameObject _muzzleFlashPrefab; // マズルフラッシュ
 
     [Header("連射関連")]
     [SerializeField] public float FireRate = 0.1f;
@@ -16,12 +16,11 @@ public class BulletShooter : MonoBehaviour
     private AudioSource _audioSource;
 
     [Header("スプレッド関連")]
-    [SerializeField] private float _moveSpreadAngle = 10f; // 移動中の最大拡散角度（度数）
+    [SerializeField] private float _moveSpreadAngle = 10f; // 移動中のスプレッド角度（度数）
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-
         Audio(0.1f);
     }
 
@@ -34,6 +33,7 @@ public class BulletShooter : MonoBehaviour
         {
             nextFireTime = Time.time + FireRate;
 
+            // マズルフラッシュ生成
             GameObject flash = Instantiate(_muzzleFlashPrefab, _firePoint.position, Quaternion.identity);
             flash.transform.SetParent(_firePoint);
 
@@ -47,7 +47,7 @@ public class BulletShooter : MonoBehaviour
     void Fire()
     {
         // 画面中央からRayを飛ばす
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));     //randomにする
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
         Vector3 targetPoint;
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
@@ -59,52 +59,53 @@ public class BulletShooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * 100f;
         }
 
-        // 🔽 プレイヤーが動いている場合、ターゲットポイントにスプレッドを加える
+        Vector3 bulletDirection;
+
+        // プレイヤーが移動中ならスプレッドを加える
         if (PlayerControl.Instance != null && PlayerControl.Instance.IsMoving)
         {
-            targetPoint = ApplySpread(targetPoint, _moveSpreadAngle);
+            bulletDirection = ApplySpreadDirection(targetPoint, _moveSpreadAngle);
+        }
+        else
+        {
+            bulletDirection = (targetPoint - _firePoint.position).normalized;
         }
 
-        // 🔧 弾の出現位置を firePoint の前方に少しオフセットする
-        Vector3 spawnPosition = _firePoint.position + _firePoint.forward * 0.2f;
+        // 弾の出現位置を少し前方にオフセット
+        Vector3 spawnPos = _firePoint.position + _firePoint.forward * 0.2f;
 
-        // 弾を生成して発射方向を設定
+        // 弾生成、方向ベクトルで初期化
         GameObject bullet = Instantiate(_bulletPrefab);
-        bullet.GetComponent<Bullet>().Init(spawnPosition, targetPoint);
+        bullet.GetComponent<Bullet>().InitWithDirection(spawnPos, bulletDirection);
+
+        // デバッグ用: 緑線でスプレッド方向を表示
+        Debug.DrawLine(spawnPos, spawnPos + bulletDirection * 50f, Color.green, 1f);
     }
 
-    // スプレッド角度の範囲内でターゲット位置をずらす
-    Vector3 ApplySpread(Vector3 originalTarget, float maxAngle)
+    // スプレッド角度の範囲内で方向ベクトルを返す
+    Vector3 ApplySpreadDirection(Vector3 target, float maxAngle)
     {
-        Vector3 direction = (originalTarget - _firePoint.position).normalized;
+        Vector3 dir = (target - _firePoint.position).normalized;
 
         // nullチェックを追加（念のため）
         if (Camera.main == null)
         {
             Debug.LogWarning("Camera.main is null");
-            return originalTarget;
+            return dir;
         }
 
         Vector3 right = Camera.main.transform.right;
         Vector3 up = Camera.main.transform.up;
 
-        // Spread値生成
+        // スプレッド値生成
         Vector2 spread = Random.insideUnitCircle * Mathf.Tan(maxAngle * Mathf.Deg2Rad);
-        Vector3 spreadDirection = direction + right * spread.x + up * spread.y;
-        spreadDirection.Normalize();
+        Vector3 spreadDir = dir + right * spread.x + up * spread.y;
+        spreadDir.Normalize();
 
-        Vector3 result = _firePoint.position + spreadDirection * 100f;
+        // デバッグ用: 赤線でスプレッド方向を表示
+        Debug.DrawRay(_firePoint.position, spreadDir * 10f, Color.red, 0.5f);
 
-        if (float.IsNaN(result.x) || float.IsNaN(result.y) || float.IsNaN(result.z))
-        {
-            Debug.LogWarning("SpreadTarget is NaN!");
-            return originalTarget;
-        }
-
-        // デバッグ用に描画（赤色の線）
-        //Debug.DrawRay(_firePoint.position, spreadDirection * 10f, Color.red, 0.5f);
-
-        return result;
+        return spreadDir;
     }
 
     void Audio(float volume)

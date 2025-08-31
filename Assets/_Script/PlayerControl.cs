@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundDistance = 0.3f;   
+    [SerializeField] private float groundDistance = 0.3f;
     private bool isGrounded;
 
     // Valorant感度変換用の設定
@@ -36,8 +36,8 @@ public class PlayerControl : MonoBehaviour
 
     [Header("銃")]
     [SerializeField] private GameObject Gun;
-    [Tooltip("銃の初期位置")]private Vector3 gunStartPos;
-    
+    [Tooltip("銃の初期位置")] private Vector3 gunStartPos;
+
     // 処理の有効・無効を管理するフラグ
     private bool isActive = true;  // trueなら処理実行、falseなら処理停止
 
@@ -56,7 +56,6 @@ public class PlayerControl : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         cameraRot = cam.transform.localRotation;
@@ -83,7 +82,6 @@ public class PlayerControl : MonoBehaviour
         gunStartPos = Gun.transform.localPosition; // 初期位置を保存
     }
 
-    // 毎フレームでの視点移動・カーソルロック処理
     void Update()
     {
         // 処理停止中なら何もしない
@@ -145,6 +143,7 @@ public class PlayerControl : MonoBehaviour
             UpdateCursorLock();
         }
 
+        // 🔽 移動時の銃揺れ（GunBob）
         if (IsMoving)
         {
             // 左右揺れ (sin波)
@@ -163,7 +162,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    // Rigidbodyを使った移動とジャンプ処理
     private void FixedUpdate()
     //毎フレームではなく、”物理演算の更新タイミング”で呼ばれる関数
     //このスクリプトで FixedUpdate() を使う理由は、「物理ベースの動き（Rigidbodyなしでも）」を安定して実行するため
@@ -242,8 +240,6 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = true;
             return; // ロック処理をスキップ
         }
-
-        // ※Escapeの処理は削除！
 
         // 左クリックでロック再開
         if (Input.GetMouseButton(0))
@@ -344,5 +340,17 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
             isGrounded = true;
+    }
+
+    // 🔹 銃揺れを外部から取得
+    public Vector3 GunBobOffset
+    {
+        get
+        {
+            if (!IsMoving) return Vector3.zero;
+            float xOffset = Mathf.Sin(Time.time * speeed) * 0.03f;
+            float yOffset = Mathf.Cos(Time.time * speeed * 2f) * 0.025f;
+            return new Vector3(xOffset, yOffset, 0f);
+        }
     }
 }
