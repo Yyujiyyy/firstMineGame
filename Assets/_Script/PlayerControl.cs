@@ -38,6 +38,11 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private GameObject Gun;
     [Tooltip("銃の初期位置")] private Vector3 gunStartPos;
 
+    [Header("足音")]
+    [Tooltip("足音"),SerializeField] private AudioClip Sound1;
+    [SerializeField] private AudioSource _audioSource;
+    private bool footstepPlayed = false;
+
     // 処理の有効・無効を管理するフラグ
     private bool isActive = true;  // trueなら処理実行、falseなら処理停止
 
@@ -154,11 +159,21 @@ public class PlayerControl : MonoBehaviour
 
             // 初期位置からのオフセット
             Gun.transform.localPosition = gunStartPos + new Vector3(xOffset, yOffset, 0f);
+
+            if (!footstepPlayed)
+            {
+                footstepPlayed = true;
+                Invoke(nameof(MoveSound), 0.2f); // 0.2秒後に1回だけ鳴らす
+            }   
+
         }
         else
         {
             // 移動していない時は初期位置に戻す
             Gun.transform.localPosition = gunStartPos;
+
+            footstepPlayed = false;  // 止まったらフラグリセット
+            _audioSource.Stop();
         }
     }
 
@@ -352,5 +367,11 @@ public class PlayerControl : MonoBehaviour
             float yOffset = Mathf.Cos(Time.time * speeed * 2f) * 0.025f;
             return new Vector3(xOffset, yOffset, 0f);
         }
+    }
+
+    void MoveSound()
+    {
+        _audioSource.loop = true;
+        _audioSource.Play();
     }
 }
