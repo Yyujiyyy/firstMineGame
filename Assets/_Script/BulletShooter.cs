@@ -94,7 +94,7 @@ public class BulletShooter : MonoBehaviour
             return dir;
         }
 
-        Vector3 right = Camera.main.transform.right;
+        Vector3 right = Camera.main.transform.right;    //キャッシュすべき  
         Vector3 up = Camera.main.transform.up;
 
         // スプレッド値生成

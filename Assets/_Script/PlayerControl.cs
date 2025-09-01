@@ -178,6 +178,8 @@ public class PlayerControl : MonoBehaviour
             footstepPlayed = false;  // 止まったらフラグリセット
             _audioSource.Stop();
         }
+
+        //Debug.Log(IsMoving);      isMovingが動いているかどうか
     }
 
     private void FixedUpdate()
