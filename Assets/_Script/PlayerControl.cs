@@ -170,7 +170,10 @@ public class PlayerControl : MonoBehaviour
         else
         {
             // 移動していない時は初期位置に戻す
-            Gun.transform.localPosition = gunStartPos;
+            // ワープ防止：補間して動かす
+            Gun.transform.localPosition = Vector3.Lerp(Gun.transform.localPosition, gunStartPos,
+                Time.deltaTime * 10f  // 数値大きいほど追従が速い
+            );
 
             footstepPlayed = false;  // 止まったらフラグリセット
             _audioSource.Stop();
