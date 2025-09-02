@@ -1,13 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartToGoGameScene : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
+    //[SerializeField] private string sceneName;
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(0);
     }
 
 }
