@@ -7,11 +7,11 @@ public class CheckBox : MonoBehaviour
     [SerializeField] private GameObject TextObject; // ButtonのTextオブジェクトをアサイン
 
     [SerializeField] private GameObject CountUptimerText;
-    [SerializeField] private CountUpTimer countUpTimer;   // タイマースクリプトをアサイン
+    [SerializeField] private CountUpTimer CountUpTimer;   // タイマースクリプトをアサイン
 
     [SerializeField] private GameObject CountDowntimer;
 
-    [SerializeField] private GameObject _T_enemy;         // 変化後の敵
+    [SerializeField] private GameObject _t_enemy;         // 変化後の敵
     public GameObject[] _HideObj;       // 非表示にしたいオブジェクト群
 
     private bool isActive = false;   // UIが現在表示されているかどうかのフラグ
@@ -48,7 +48,7 @@ public class CheckBox : MonoBehaviour
         CountUptimerText.SetActive(true);
 
         // タイマーを開始
-        countUpTimer?.StartTimer();
+        CountUpTimer?.StartTimer();
 
         //_HideObj に入っている全てのオブジェクトに対して、順番に obj という変数名で使えるようにする。
         foreach (GameObject obj in _HideObj)
@@ -57,7 +57,7 @@ public class CheckBox : MonoBehaviour
         }
 
         // 通常の敵を非表示にし、変化後の敵を表示
-        _T_enemy.SetActive(true);
+        _t_enemy.SetActive(true);
 
         // 表示状態を記録
         isActive = true;
@@ -69,7 +69,7 @@ public class CheckBox : MonoBehaviour
         TextObject.SetActive(false);
         CountDowntimer.SetActive(false);
         CountUptimerText.SetActive(false);
-        countUpTimer?.StopTimer();
+        CountUpTimer?.StopTimer();
 
         // _HideObj を再表示
         foreach (GameObject obj in _HideObj)
@@ -79,7 +79,7 @@ public class CheckBox : MonoBehaviour
 
         // 敵表示を元に戻す
         //_Enemy.SetActive(true);
-        _T_enemy.SetActive(false);
+        _t_enemy.SetActive(false);
 
         // 表示状態をリセット
         isActive = false;
