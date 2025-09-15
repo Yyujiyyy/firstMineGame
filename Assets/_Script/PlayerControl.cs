@@ -130,12 +130,16 @@ public class PlayerControl : MonoBehaviour
         }
 
         // ③ マウスによる視点回転
-        float xRot = Input.GetAxisRaw("Mouse X") * Sensitivity;
-        float yRot = Input.GetAxisRaw("Mouse Y") * Sensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime * 100f;
+        float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime * 100f;
         //マウスの移動量　       ×　   感度
 
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        characterRot *= Quaternion.Euler(0, xRot, 0);
+        x += mouseX;
+        z -= mouseY;
+        z = Mathf.Clamp(z, minX, maxX);
+
+        cam.transform.localRotation = Quaternion.Euler(z, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, x, 0f);
 
         cameraRot = ClampRotation(cameraRot);
 
