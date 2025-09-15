@@ -141,11 +141,6 @@ public class PlayerControl : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(z, 0f, 0f);
         transform.localRotation = Quaternion.Euler(0f, x, 0f);
 
-        cameraRot = ClampRotation(cameraRot);
-
-        cam.transform.localRotation = cameraRot;
-        transform.localRotation = characterRot;
-
         // ④ カーソルロック処理（マウスクリックなど）
         if (Popup == null || !Popup.activeSelf)
         {
